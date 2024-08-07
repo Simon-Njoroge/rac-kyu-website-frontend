@@ -1,13 +1,22 @@
 import logo from '../assets/logo.png';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
-import { Menu, X } from 'lucide-react'; // Make sure you have lucide-react installed
+import { Menu, X } from 'lucide-react';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
+  };
+
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  const closeDropdown = () => {
+    setIsDropdownOpen(false);
   };
 
   return (
@@ -27,15 +36,20 @@ const Navbar = () => {
               <Link to="/">Home</Link>
             </li>
             <li className='relative'>
-              <div className='hover:border-b-2 cursor-pointer hover:border-pink-600 pb-1'>
+              <div 
+                className='hover:border-b-2 cursor-pointer hover:border-pink-600 pb-1'
+                onClick={toggleDropdown}
+              >
                 <span>About-us</span>
               </div>
-              <ul className='absolute left-0 mt-2 hidden group-hover:block bg-white shadow-lg w-52'>
+              <ul 
+                className={`absolute left-0 mt-2 bg-white shadow-lg w-52 ${isDropdownOpen ? 'block' : 'hidden'}`}
+              >
                 <li className='p-2 hover:bg-gray-100'>
-                  <Link to="/council-president">Council of Presidents</Link>
+                  <Link to="/council-president" onClick={closeDropdown}>Council of Presidents</Link>
                 </li>
                 <li className='p-2 hover:bg-gray-100'>
-                  <Link to="/our-history">Our History</Link>
+                  <Link to="/our-history" onClick={closeDropdown}>Our History</Link>
                 </li>
               </ul>
             </li>
