@@ -1,9 +1,16 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { api } from './home';
-
+import { FadeLoader } from "react-spinners";
+interface proj{
+    id:number,
+    project:string,
+    image:string
+    date:string
+    description: string
+}
 const Projects = () => {
-    const [projects, setProject] = useState<string[] | undefined>([]);
+    const [projects, setProject] = useState<proj[]>([]);
     
     const fetchProjects = () => {
         axios.get(`${api}/allprojects`)
@@ -24,7 +31,8 @@ const Projects = () => {
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 my-10 px-4 md:px-10">
                 {
-                    projects && projects.map((project: any) => (
+                    projects.length>0?(
+                    projects && projects.map((project: proj) => (
                         <div key={project.id} className="relative w-full h-60 group overflow-hidden rounded-md shadow-md transition-transform duration-300 hover:scale-105">
                             <img src={project.image} alt="" className="w-full h-48 object-cover" />
                             <div className="absolute bottom-0 left-0 w-full bg-black bg-opacity-60 text-white p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -32,7 +40,12 @@ const Projects = () => {
                                 <p className="text-center text-sm">{project.date}</p>
                             </div>
                         </div>
-                    ))
+                    ))):(
+                        <div className="flex gap-5 justify-center items-center w-full">
+                            <FadeLoader  color="#ff007f" />
+                            <p>loading project...</p>
+                        </div>
+                    )
                 }
             </div>
         </>

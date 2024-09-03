@@ -66,7 +66,7 @@ const Navbar = () => {
               <Link to="/gallery">Gallery</Link>
             </li>
             <li className='hover:border-b-2 cursor-pointer hover:border-pink-600 pb-1'>
-              <Link to="/blogs">Blogs</Link>
+              <Link to="/blogs">Join us</Link>
             </li>
             <li className='hover:border-b-2 cursor-pointer hover:border-pink-600 pb-1'>
               <Link to="/donate">Donate</Link>
