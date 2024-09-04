@@ -17,7 +17,7 @@ const Presidents = () => {
 
   return (
     <>
-      <div className="mt-10 px-4 md:px-10">
+      <div className="mt-20 px-4 md:px-10">
         <p className="bg-pink-600 text-center h-20 flex items-center justify-center text-white font-bold text-xl">
           Council of Presidents from 2015 till now
         </p>

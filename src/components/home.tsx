@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import { Eye, BicepsFlexed, Activity } from 'lucide-react';
 import joinus from '../assets/join_us_today.avif';
-export const api = 'https://rac-kyu-backend.onrender.com';
+export const api = 'http://locaLhost:8000';
 import { FadeLoader } from "react-spinners";
-
+import area from '../assets/seven area of focus grey.png'
 const Home = () => {
   const [homepics, setHomepics] = useState<string[]>([]);
   const [courses, setOurcouses] = useState<string[]>([]);
@@ -164,6 +164,7 @@ const Home = () => {
       {/* Our Courses */}
       <div>
         <h1 className="text-center mt-10 font-bold text-2xl text-pink-600">Our Courses</h1>
+        <img src={area} alt=""  className="mt-10 rounded"/>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 mt-10 gap-5 rounded-md">
         {courses.length > 0 ? (
@@ -187,9 +188,9 @@ const Home = () => {
       {/* Join Us Today */}
       <div className="mt-10 relative">
         <img src={joinus} alt="" className="w-full h-56" />
-        <button className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 border-2 rounded-md border-orange-600 bg-pink-600 text-white px-4 py-2 hover:bg-transparent hover:border-pink-600">
+        <Link to="/join-us"><button className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 border-2 rounded-md border-orange-600 bg-pink-600 text-white px-4 py-2 hover:bg-transparent hover:border-pink-600">
           Join Us Today
-        </button>
+        </button></Link>
       </div>
     </>
   );

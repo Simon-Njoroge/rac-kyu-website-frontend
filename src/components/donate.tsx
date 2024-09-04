@@ -9,7 +9,7 @@ const Donate = () => {
 
   return (
     <>
-      <div className="mt-10 mx-5 md:mx-20">
+      <div className="mt-20 mx-5 md:mx-20">
         <p className="bg-pink-600 text-center h-20 flex items-center justify-center text-white font-bold text-xl">
           Donate
         </p>

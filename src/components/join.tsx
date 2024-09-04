@@ -4,7 +4,7 @@ import friends from '../assets/friends.png';
 const Join = () => {
   return (
     <>
-      <div className="mx-4 mt-10 md:mx-8 lg:mx-10">
+      <div className="mx-4 mt-20 md:mx-8 lg:mx-10">
         <p className="bg-pink-600 text-center h-16 md:h-20 flex items-center justify-center text-white font-bold text-lg md:text-xl lg:text-2xl">
           Join Us Today 🫴
         </p>

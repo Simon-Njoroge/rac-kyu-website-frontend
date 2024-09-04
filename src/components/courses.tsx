@@ -2,6 +2,7 @@ import axios from "axios";
 import { api } from './home';
 import { useState, useEffect } from "react";
 import { FadeLoader } from "react-spinners";
+import areas from '../assets/seven area of focus grey.png'
 interface cour{
     id:number,
     area:string,
@@ -24,10 +25,11 @@ const Courses = () => {
 
     return (
         <>
-            <div className="mt-10 px-4 md:px-10">
+            <div className="mt-20 px-4 md:px-10">
                 <p className="bg-pink-600 text-center h-20 flex items-center justify-center text-white font-bold text-xl">
                     The Seven Areas Of Focus
                 </p>
+                <img src={areas} alt="" className="mt-5" />
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 mt-10 px-4 md:px-10">
                 {

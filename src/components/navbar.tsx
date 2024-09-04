@@ -22,7 +22,7 @@ const Navbar = () => {
   return (
     <>
       <div className='fixed top-0 left-0 w-full flex items-center bg-white shadow-md z-50 px-4 md:px-8 lg:px-16 py-4'>
-        <div className='flex items-center flex-grow'>
+        <div className='flex items-center flex-grow '>
           <img src={logo} alt="Logo" className='w-40 md:w-60 text-green-600' />
         </div>
         <div className='flex md:hidden'>
@@ -66,7 +66,7 @@ const Navbar = () => {
               <Link to="/gallery">Gallery</Link>
             </li>
             <li className='hover:border-b-2 cursor-pointer hover:border-pink-600 pb-1'>
-              <Link to="/blogs">Join us</Link>
+              <Link to="/join-us">Join us</Link>
             </li>
             <li className='hover:border-b-2 cursor-pointer hover:border-pink-600 pb-1'>
               <Link to="/donate">Donate</Link>

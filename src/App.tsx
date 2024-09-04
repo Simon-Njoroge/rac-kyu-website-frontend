@@ -11,6 +11,8 @@ import Gallerypage from './pages/gallery_page';
 import Coursepage from './pages/our_courses_page';
 import Histroypage from './pages/our_history_page';
 import Projectpage from './pages/Projects_page';
+import Admincontainer from './containers/admincontainer/admincontainer';
+import Managehome from './components/admin/home';
 function App() {
   const router = createBrowserRouter([
     {
@@ -18,7 +20,7 @@ function App() {
       element: <Homepage />,
     },
     {
-      path: '/blogs',
+      path: '/join-us',
       element: <Blogpage />,
     },
     {
@@ -52,6 +54,10 @@ function App() {
     {
       path: '/project',
       element: <Projectpage />,
+    },
+    {
+      path: '/admin',
+      element: <Admincontainer><Managehome/></Admincontainer>,
     },
   ])
 

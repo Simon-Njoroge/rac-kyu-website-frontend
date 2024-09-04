@@ -26,7 +26,7 @@ const Events = () => {
   }, []);
 
   return (
-    <div className="mx-4 md:mx-10 mt-10">
+    <div className="mx-4 md:mx-10 mt-20">
       <p className="bg-pink-600 text-center h-20 flex items-center justify-center text-white font-bold text-xl md:text-2xl">
         Upcoming Events
       </p>
