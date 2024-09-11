@@ -1,8 +1,8 @@
 # Redirects from what the browser requests to what we serve
-/council-president             /
-/our-history    /blog/my-post
-/project                /blog
-/events           https://master--rackyu.netlify.app
-/gallery
-/donate
-/contact-us
+/council-president / 200
+/our-history /blog/my-post 200
+/project /blog 200
+/events https://master--rackyu.netlify.app 200
+/gallery / 200
+/donate / 200
+/contact-us / 200

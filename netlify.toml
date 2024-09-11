@@ -1,4 +1,13 @@
+[build]
+  publish = "build"
+  command = "pnpm run build"
+
 [[redirects]]
-  from = "/our-courses"
-  to = "/https://rackyu.netlify.app"
+  from = "/*"
+  to = "/app.html"
+  status = 200
+
+[[redirects]]
+  from = "/"
+  to = "/app.html"
   status = 200
