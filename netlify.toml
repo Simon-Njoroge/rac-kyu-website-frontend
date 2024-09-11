@@ -1,11 +1,64 @@
-
-
 [[redirects]]
-  from = "/*"
-  to = "/app.html"
+  from = "/council-president"
+  to = "/index.html"
   status = 200
 
 [[redirects]]
-  from = "/"
-  to = "/app.html"
+  from = "/our-history"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/project"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/events"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/gallery"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/donate"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/contact-us"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/managehome"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/managepresidents"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/managecourses"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/manageprojects"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/manageevents"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/manageGallery"
+  to = "/index.html"
   status = 200

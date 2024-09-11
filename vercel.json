@@ -6,7 +6,13 @@
       { "source": "/events", "destination": "/index.html" },
       { "source": "/gallery", "destination": "/index.html" },
       { "source": "/donate", "destination": "/index.html" },
-      { "source": "/contact-us", "destination": "/index.html" }
+      { "source": "/contact-us", "destination": "/index.html" },
+      { "source": "/managehome", "destination": "/index.html" },
+      { "source": "/managepresidents", "destination": "/index.html" },
+      { "source": "/managecourses", "destination": "/index.html" },
+      { "source": "/manageprojects", "destination": "/index.html" },
+      { "source": "/manageevents", "destination": "/index.html" },
+      { "source": "/manageGallery", "destination": "/index.html" }
     ]
   }
   
