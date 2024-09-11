@@ -18,7 +18,7 @@ const Projects = () => {
     const fetchProjects = () => {
         axios.get(`${api}/allprojects`)
             .then(res => setProject(res.data))
-            .catch(error => console.log(error));
+            .catch(error => console.error("failed to load data",error));
     };
 
     useEffect(() => {
