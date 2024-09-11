@@ -1,1 +1,8 @@
-/* /index.html 200
+# Redirects from what the browser requests to what we serve
+/council-president             /
+/our-history    /blog/my-post
+/project                /blog
+/events           https://master--rackyu.netlify.app
+/gallery
+/donate
+/contact-us
