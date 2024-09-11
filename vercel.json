@@ -1,12 +1,12 @@
 {
     "rewrites": [
-      { "source": "/council-president", "destination": "/https://rac-kyu-website-frontend.vercel.app/" },
-      { "source": "/our-history", "destination": "/https://rac-kyu-website-frontend.vercel.app/" },
-      { "source": "/project", "destination": "/https://rac-kyu-website-frontend.vercel.app/" },
-      { "source": "/events", "destination": "/https://rac-kyu-website-frontend.vercel.app/" },
-      { "source": "/gallery", "destination": "/https://rac-kyu-website-frontend.vercel.app/" },
-      { "source": "/donate", "destination": "/https://rac-kyu-website-frontend.vercel.app/" },
-      { "source": "/contact-us", "destination": "/https://rac-kyu-website-frontend.vercel.app/" }
+      { "source": "/council-president", "destination": "/https://rac-kyu-website-frontend.vercel.app" },
+      { "source": "/our-history", "destination": "/https://rac-kyu-website-frontend.vercel.app" },
+      { "source": "/project", "destination": "/https://rac-kyu-website-frontend.vercel.app" },
+      { "source": "/events", "destination": "/https://rac-kyu-website-frontend.vercel.app" },
+      { "source": "/gallery", "destination": "/https://rac-kyu-website-frontend.vercel.app" },
+      { "source": "/donate", "destination": "/https://rac-kyu-website-frontend.vercel.app" },
+      { "source": "/contact-us", "destination": "/https://rac-kyu-website-frontend.vercel.app" }
     ]
   }
   
