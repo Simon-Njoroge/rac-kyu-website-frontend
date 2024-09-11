@@ -1,7 +1,7 @@
 import logo from '../assets/logo.png';
 import Copyright from './copyright';
 const Footer = () => {
-  const year: number = new Date().getFullYear();
+  // const year: number = new Date().getFullYear();
   return (
     <footer className="bg-black text-white py-10 mt-2">
       <div className="container mx-auto flex flex-col md:flex-row justify-between items-start md:items-center space-y-8 md:space-y-0 px-4">
