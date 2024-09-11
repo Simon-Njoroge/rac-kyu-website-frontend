@@ -13,51 +13,93 @@ import Histroypage from './pages/our_history_page';
 import Projectpage from './pages/Projects_page';
 import Admincontainer from './containers/admincontainer/admincontainer';
 import Managehome from './components/admin/home';
+import ErrorPage from './pages/error';
+import Managepresidents from './components/admin/presidents';
+import Managecourses from './components/admin/courses';
+import Manageprojects from './components/admin/projects';
+import Manageevents from './components/admin/events';
+import ManageGallery from './components/admin/gallery';
 function App() {
   const router = createBrowserRouter([
     {
       path: '/',
       element: <Homepage />,
+      errorElement: <ErrorPage/>
     },
     {
       path: '/join-us',
       element: <Blogpage />,
+      errorElement: <ErrorPage/>
     },
     {
       path: '/contact-us',
       element: <Contactuspage />,
+      errorElement: <ErrorPage/>
     },
     {
       path: '/council-president',
       element: <Councilpage />,
+      errorElement: <ErrorPage/>
     },
     {
       path: '/donate',
       element: <Donatepage />,
+      errorElement: <ErrorPage/>
     },
     {
       path: '/events',
       element: <Eventpage />,
+      errorElement: <ErrorPage/>
     },
     {
       path: '/gallery',
       element: <Gallerypage />,
+      errorElement: <ErrorPage/>
     },
     {
       path: '/our-courses',
       element: <Coursepage />,
+      errorElement: <ErrorPage/>
     },
     {
       path: '/our-history',
       element: <Histroypage />,
+      errorElement: <ErrorPage/>
     },
     {
       path: '/project',
       element: <Projectpage />,
+      errorElement: <ErrorPage/>
     },
     {
-      path: '/admin',
+      path: '/managehome',
       element: <Admincontainer><Managehome/></Admincontainer>,
+      errorElement: <ErrorPage/>
+    },
+    {
+      path: '/managepresidents',
+      element: <Admincontainer><Managepresidents/></Admincontainer>,
+      errorElement: <ErrorPage/>
+    },
+    {
+      path: '/managecourses',
+      element: <Admincontainer><Managecourses/></Admincontainer>,
+      errorElement: <ErrorPage/>
+    },
+    {
+      path: '/manageprojects',
+      element: <Admincontainer><Manageprojects/></Admincontainer>,
+      errorElement: <ErrorPage/>
+    },
+    {
+      path: '/manageevents',
+      element: <Admincontainer><Manageevents/></Admincontainer>,
+      errorElement: <ErrorPage/>
+    },
+    {
+      path: '/manageGallery',
+      element: <Admincontainer><ManageGallery/></Admincontainer>,
+      errorElement: <ErrorPage/>
     },
   ])
 

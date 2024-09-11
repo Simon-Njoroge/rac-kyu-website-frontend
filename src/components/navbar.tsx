@@ -45,35 +45,53 @@ const Navbar = () => {
               <ul 
                 className={`absolute left-0 mt-2 bg-white shadow-lg w-52 ${isDropdownOpen ? 'block' : 'hidden'}`}
               >
+                 <Link to="/council-president" onClick={closeDropdown}>
                 <li className='p-2 hover:bg-gray-100'>
-                  <Link to="/council-president" onClick={closeDropdown}>Council of Presidents</Link>
+                 Council of Presidents
                 </li>
+                </Link>
+                <Link to="/our-history" onClick={closeDropdown}>
                 <li className='p-2 hover:bg-gray-100'>
-                  <Link to="/our-history" onClick={closeDropdown}>Our History</Link>
+                  Our History
                 </li>
+                </Link>
               </ul>
             </li>
+            <Link to="/our-courses">
             <li className='hover:border-b-2 cursor-pointer hover:border-pink-600 pb-1'>
-              <Link to="/our-courses">Our courses</Link>
+             Our courses
             </li>
+            </Link>
+            <Link to="/project">
             <li className='hover:border-b-2 cursor-pointer hover:border-pink-600 pb-1'>
-              <Link to="/project">Projects</Link>
+              Projects
             </li>
+            </Link>
+            <Link to="/events">
             <li className='hover:border-b-2 cursor-pointer hover:border-pink-600 pb-1'>
-              <Link to="/events">Events</Link>
+              Events
             </li>
+            </Link>
+            <Link to="/gallery">
             <li className='hover:border-b-2 cursor-pointer hover:border-pink-600 pb-1'>
-              <Link to="/gallery">Gallery</Link>
+             Gallery
             </li>
+            </Link>
+            <Link to="/join-us">
             <li className='hover:border-b-2 cursor-pointer hover:border-pink-600 pb-1'>
-              <Link to="/join-us">Join us</Link>
+             Join us
             </li>
+            </Link>
+            <Link to="/donate">
             <li className='hover:border-b-2 cursor-pointer hover:border-pink-600 pb-1'>
-              <Link to="/donate">Donate</Link>
+            Donate
             </li>
+            </Link>
+            <Link to="/contact-us">
             <li className='hover:border-b-2 cursor-pointer hover:border-pink-600 pb-1'>
-              <Link to="/contact-us">Contact-us</Link>
+             Contact-us
             </li>
+            </Link>
           </ul>
         </nav>
       </div>
