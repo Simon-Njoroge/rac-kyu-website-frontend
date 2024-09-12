@@ -2,7 +2,7 @@ import { api } from '../home';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { FaEdit, FaTrash } from 'react-icons/fa';
-
+import { FadeLoader } from 'react-spinners';
 interface Home {
   id: number;
   picture: string;
@@ -63,9 +63,10 @@ const Managehome = () => {
                     </tr>
                   ))
                 ) : (
-                  <tr>
-                    <td colSpan={5} className="text-center">No data available</td>
-                  </tr>
+                  <div className="flex gap-5 justify-center items-center w-full mb-2">
+            <FadeLoader color="#EC4899" />
+            <p>Loading home data...</p>
+          </div>
                 )
               }
             </tbody>
