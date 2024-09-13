@@ -3,6 +3,8 @@ import { api } from '../home'
 import { useState, useEffect } from 'react'
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import { FadeLoader } from 'react-spinners';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 interface proj {
     id: number,
     project: string,
@@ -20,8 +22,26 @@ const Manageprojects = () => {
         fetchporjectdata()
     }, [])
     // console.log(projects)
+    const handlePrdelete = async (id: number) => {
+        try {
+            toast.success("Deleted successfully", {
+                position: "top-right",
+                theme: "colored"
+            });
+            axios.delete(`${api}/deleteproject/${id}`)
+            Fetchprojects(prevproj => prevproj.filter(project => project.id !== id));
+            toast.success("Deleted successfully", {
+                position: "top-right",
+                theme: "colored"
+            });
+        }
+        catch (error) {
+            console.error("failed to delete project", error)
+        }
+    }
     return (
         <>
+        
             <div className="w-full overflowy-y-scroll max-h-screen pl-2 pt-5">
                 <div className="overflow-x-auto">
                     <table className="table">
@@ -50,11 +70,28 @@ const Manageprojects = () => {
                                                 <td>
                                                     <button className="text-blue-500 hover:text-blue-700">
                                                         <FaEdit />
+
                                                     </button>
                                                 </td>
                                                 <td>
-                                                    <button className="text-red-500 hover:text-red-700">
+                                                    <button className="text-red-500 hover:text-red-700" onClick={() => handlePrdelete(project.id)}>
                                                         <FaTrash />
+                                                        <ToastContainer
+                                                            position="top-right"
+                                                            autoClose={5000}
+                                                            hideProgressBar={false}
+                                                            newestOnTop={false}
+                                                            closeOnClick
+                                                            rtl={false}
+                                                            pauseOnFocusLoss
+                                                            draggable
+                                                            pauseOnHover
+                                                            theme="light"
+
+                                                        />
+                                                        {/* Same as */}
+                                                        <ToastContainer />
+
                                                     </button>
                                                 </td>
                                             </tr>
@@ -62,9 +99,9 @@ const Manageprojects = () => {
                                     })
                                 ) : (
                                     <div className="flex gap-5 justify-center items-center w-full mb-2">
-                                    <FadeLoader color="#EC4899" />
-                                    <p>Loading projects data...</p>
-                                  </div>
+                                        <FadeLoader color="#EC4899" />
+                                        <p>Loading projects data...</p>
+                                    </div>
                                 )
                             }
                         </tbody>
