@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import { FadeLoader } from 'react-spinners';
-
+import { ToastContainer, toast } from 'react-toastify';
 interface Prez {
   id: number;
   president_name: string;
@@ -35,8 +35,10 @@ const Managepresidents = () => {
     try {
       await axios.delete(`${api}/deletepresident/${id}`);
       setPresidents(prevPres => prevPres.filter(pres => pres.id !== id));
+      toast.success("deleted successfuly")
     } catch (error) {
       console.error("Failed to delete president", error);
+      toast.error("deletion failed!!!")
     }
   };
 
@@ -51,10 +53,13 @@ const Managepresidents = () => {
         await axios.put(`${api}/updatepresident/${editPresident.id}`, editPresident);
         setPresidents(prevPres =>
           prevPres.map(pres => (pres.id === editPresident.id ? editPresident : pres))
+         
         );
+        toast.success("udated successfuly")
         setEditPresident(null); // Close the form after updating
       } catch (error) {
         console.error("Failed to update president", error);
+        toast.error("failed to update!!!")
       }
     }
   };
@@ -173,6 +178,7 @@ const Managepresidents = () => {
           </div>
         )}
       </div>
+      <ToastContainer/>
     </div>
   );
 };

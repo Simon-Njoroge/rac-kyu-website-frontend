@@ -3,7 +3,7 @@ import { api } from '../home';
 import { useState, useEffect } from 'react';
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import { FadeLoader } from 'react-spinners';
-
+import { ToastContainer,toast } from 'react-toastify';
 interface Tevent {
     id: number;
     poster: string;
@@ -31,8 +31,10 @@ const Manageevents = () => {
         try {
             await axios.delete(`${api}/deleteevent/${id}`);
             setEvents(prevEvents => prevEvents.filter(event => event.id !== id));
+            toast.success("deleted successfully")
         } catch (error) {
             console.error("failed to delete event", error);
+            toast.error("failed to delete!!!")
         }
     };
 
@@ -48,9 +50,11 @@ const Manageevents = () => {
                 setEvents(prevEvents =>
                     prevEvents.map(event => event.id === editEvent.id ? editEvent : event)
                 );
+                toast.success("updated successfully")
                 setEditEvent(null); 
             } catch (error) {
                 console.error("Failed to update event", error);
+                toast.error("failed to delete!!!")
             }
         }
     };
@@ -144,7 +148,9 @@ const Manageevents = () => {
                         </form>
                     </div>
                 )}
+               
             </div>
+            <ToastContainer/>
         </>
     );
 };

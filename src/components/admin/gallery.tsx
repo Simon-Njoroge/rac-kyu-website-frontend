@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import { FadeLoader } from 'react-spinners';
-
+import { ToastContainer, toast } from 'react-toastify';
 interface Gall {
     id: number;
     image: string;
@@ -32,8 +32,10 @@ const ManageGallery = () => {
         try {
             await axios.delete(`${api}/deletegallery/${id}`);
             setGallery(prevGallery => prevGallery.filter(galleryItem => galleryItem.id !== id));
+            toast.success("deleted successfully")
         } catch (error) {
             console.error("failed to delete gallery", error);
+            toast.error("failed to delete!!!")
         }
     };
 
@@ -51,9 +53,11 @@ const ManageGallery = () => {
                         galleryItem.id === editGallery.id ? editGallery : galleryItem
                     )
                 );
+                toast.success("updated successfully")
                 setEditGallery(null); // Close the form after updating
             } catch (error) {
                 console.error("Failed to update gallery", error);
+                toast.error("failed to update!!!")
             }
         }
     };
@@ -158,6 +162,7 @@ const ManageGallery = () => {
                         </form>
                     </div>
                 )}
+                <ToastContainer/>
             </div>
         </>
     );

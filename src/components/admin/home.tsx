@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import { FadeLoader } from 'react-spinners';
-
+import { ToastContainer, toast } from 'react-toastify';
 interface Home {
   id: number;
   picture: string;
@@ -34,8 +34,10 @@ const Managehome = () => {
     try {
       await axios.delete(`${api}/deletehomepic/${id}`);
       setHome(prevHome => prevHome.filter(hom => hom.id !== id));
+      toast.success("deleted successfuy")
     } catch (error) {
       console.error("Failed to delete home", error);
+      toast.error("failed to delete!!!")
     }
   };
 
@@ -47,6 +49,8 @@ const Managehome = () => {
     e.preventDefault();
     if (editHome) {
       try {
+        toast.success("updated successfully"
+        )
         await axios.put(`${api}/updatehomepic/${editHome.id}`, editHome);
         setHome(prevHome =>
           prevHome.map(hom => (hom.id === editHome.id ? editHome : hom))
@@ -54,6 +58,7 @@ const Managehome = () => {
         setEditHome(null); // Close the form after updating
       } catch (error) {
         console.error("Failed to update home", error);
+        toast.error("failed to update!!!")
       }
     }
   };
@@ -148,6 +153,7 @@ const Managehome = () => {
                 >
                   Update
                 </button>
+              
                 <button
                   type="button"
                   onClick={() => setEditHome(null)} // Close the form without saving
@@ -160,7 +166,9 @@ const Managehome = () => {
           </div>
         )}
       </div>
+      <ToastContainer/>
     </div>
+    
   );
 };
 

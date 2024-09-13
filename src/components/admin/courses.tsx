@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import { FadeLoader } from 'react-spinners';
-
+import { ToastContainer,toast } from 'react-toastify';
 interface Tcourses {
     id: number;
     area: string;
@@ -32,8 +32,10 @@ const Managecourses = () => {
         try {
             await axios.delete(`${api}/deletearea/${id}`);
             setCourses(prevCourses => prevCourses.filter(course => course.id !== id));
+            toast.success("deleted successfully")
         } catch (error) {
             console.error("failed to delete course", error);
+            toast.error("failed to delete!!!")
         }
     };
 
@@ -49,9 +51,11 @@ const Managecourses = () => {
                 setCourses(prevCourses => 
                     prevCourses.map(course => course.id === editCourse.id ? editCourse : course)
                 );
+                toast.success("updated successfully")
                 setEditCourse(null); 
             } catch (error) {
                 console.error("Failed to update course", error);
+                toast.error("failed to update!!!")
             }
         }
     };
@@ -157,6 +161,7 @@ const Managecourses = () => {
                         </form>
                     </div>
                 )}
+                <ToastContainer/>
             </div>
         </>
     );
