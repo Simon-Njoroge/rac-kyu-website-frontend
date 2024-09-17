@@ -7,11 +7,11 @@ const Footer = () => {
       <div className="container mx-auto flex flex-col md:flex-row justify-between items-start md:items-center space-y-8 md:space-y-0 px-4 bg-blue-600">
         {/* Logo and Description */}
         <aside className="flex flex-col items-start bg-blue-600">
-          <img src={logo} alt="Club Logo " className="mb-4 w-48 bg-blue-600 " />
+          <img src={logo} alt="Club Logo " className="mb-4 w-56 bg-blue-600  " />
           <p className="text-sm bg-blue-600 text-white">
             Rotaract Club of Kirinyaga University.
             <br />
-            Developed by President Simon in 2024
+            Developed and Managed by the rotaract club of Kirinyaga University
           </p>
         </aside>
 
