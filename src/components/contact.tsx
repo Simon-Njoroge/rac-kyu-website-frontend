@@ -1,4 +1,4 @@
-import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaSearch } from 'react-icons/fa';
+import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaSearch, FaFacebook, FaInstagram, FaTwitter } from 'react-icons/fa';
 import contact from '../assets/contact us.avif';
 
 const Contactus = () => {
@@ -43,8 +43,32 @@ const Contactus = () => {
                         </div>
                     </div>
                 </div>
-
-                {/* Find a Club Section */}
+                <div className='mt-5 text-center font-bold'>
+                    <h1>Social Media Handles</h1>
+                </div>
+                <div className='flex flex-3 justify-between w-full mt-5'>
+                    <div>
+                        <a href="https://web.facebook.com/rotaractclubofkirinyagauniversity" target="_blank">
+                            <p className='cursor-pointer hover:text-pink-600 font-bold'>
+                                <FaFacebook className='inline-block mr-2' /> Facebook
+                            </p>
+                        </a>
+                    </div>
+                    <div>
+                        <a href="https://www.instagram.com/rac_kyu" target="_blank">
+                            <p className='cursor-pointer hover:text-pink-600 font-bold'>
+                                <FaInstagram className='inline-block mr-2' /> Instagram
+                            </p>
+                        </a>
+                    </div>
+                    <div>
+                        <a href="https://x.com/rac_kyu" target="_blank">
+                            <p className='cursor-pointer hover:text-pink-600 font-bold'>
+                                <FaTwitter className='inline-block mr-2' /> Twitter
+                            </p>
+                        </a>
+                    </div>
+                </div>
                 <div className="mt-10 text-center">
                     <h1 className="font-bold text-lg md:text-xl">Find a Club</h1>
                     <a

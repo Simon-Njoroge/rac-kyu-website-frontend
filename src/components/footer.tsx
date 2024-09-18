@@ -1,6 +1,6 @@
 import logo from '../assets/logo.png';
 import Copyright from './copyright';
-
+import { Link } from 'react-router-dom';
 const Footer = () => {
   return (
     <footer className="bg-blue-600 text-white py-10 mt-2">
@@ -20,18 +20,19 @@ const Footer = () => {
           {/* Club Section */}
           <nav className="flex flex-col space-y-2 bg-blue-600">
             <h6 className="font-semibold text-lg text-pink-300 bg-blue-600">Club</h6>
-            <a href="#" className="hover:text-pink-200 bg-blue-600 text-white">About Us</a>
-            <a href="#" className="hover:text-pink-200 bg-blue-600 text-white">Presidents</a>
-            <a href="#" className="hover:text-pink-200 bg-blue-600 text-white">Events</a>
-            <a href="#" className="hover:text-pink-200 bg-blue-600 text-white">Contact Us</a>
+           <Link to="/council-president" className='bg-blue-600'><a href="#" className="hover:text-pink-200 bg-blue-600 text-white">Presidents</a></Link>
+           <Link to="/our-courses" className='bg-blue-600'><a href="#" className="hover:text-pink-200 bg-blue-600 text-white">Our courses</a></Link>
+           <Link to="/project" className='bg-blue-600'><a href="#" className="hover:text-pink-200 bg-blue-600 text-white">Projects</a></Link>
+           <Link to="/events" className='bg-blue-600'><a href="#" className="hover:text-pink-200 bg-blue-600 text-white">Events</a></Link>
+           <Link to="/gallery" className='bg-blue-600'><a href="#" className="hover:text-pink-200 bg-blue-600 text-white">Gallery</a></Link>
           </nav>
 
           {/* Legal Section */}
           <nav className="flex flex-col space-y-2 bg-blue-600">
             <h6 className="font-semibold text-lg text-pink-300 bg-blue-600">Legal</h6>
-            <a href="#" className="hover:text-pink-200 bg-blue-600 text-white">Terms of Use</a>
-            <a href="#" className="hover:text-pink-200 bg-blue-600 text-white">Privacy Policy</a>
-            {/* <a href="#" className="hover:text-pink-200">Cookie Policy</a> */}
+            <a href="https://drive.google.com/file/d/1dw-9heqk-v_xoVw7uqw-N7_TS5QEVYrK/view?usp=sharing" target="_blank" className="hover:text-pink-200 bg-blue-600 text-white">Terms of Use</a>
+            <a href="https://drive.google.com/file/d/1tet_5XY8_wVaVXpoDGJg6sIrgLf-5-vS/view?usp=sharing"  target="_blank"  className="hover:text-pink-200 bg-blue-600 text-white">Privacy Policy</a>
+         
           </nav>
         </div>
       </div>
