@@ -1,6 +1,6 @@
 import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaSearch, FaFacebook, FaInstagram, FaTwitter } from 'react-icons/fa';
 import contact from '../assets/contact us.avif';
-import GoogleMapComponent from './googlemap';
+// import GoogleMapComponent from './googlemap';
 const Contactus = () => {
     return (
         <>
@@ -69,10 +69,10 @@ const Contactus = () => {
                         </a>
                     </div>
                 </div>
-                <div>
+                {/* <div>
                     <p>map</p>
                     <GoogleMapComponent/>
-                </div>
+                </div> */}
                 <div className="mt-10 text-center">
                     <h1 className="font-bold text-lg md:text-xl">Find a Club</h1>
                     <a
