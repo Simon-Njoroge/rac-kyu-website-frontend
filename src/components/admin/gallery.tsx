@@ -4,9 +4,9 @@ import axios from 'axios';
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import { FadeLoader } from 'react-spinners';
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'; // Import the toastify CSS
+import 'react-toastify/dist/ReactToastify.css'; // Import toastify CSS
 
-interface Gall {
+interface GalleryItem {
   id: number;
   image: string;
   link: string;
@@ -14,52 +14,66 @@ interface Gall {
 }
 
 const ManageGallery = () => {
-  const [gallery, setGallery] = useState<Gall[]>([]);
-  const [editGallery, setEditGallery] = useState<Gall | null>(null); // State for editing gallery
+  const [galleryItems, setGalleryItems] = useState<GalleryItem[]>([]);
+  const [editGalleryItem, setEditGalleryItem] = useState<GalleryItem | null>(null); // State to handle the gallery item being edited
+  const [newGalleryItem, setNewGalleryItem] = useState<GalleryItem | null>(null); // State for handling adding a new gallery item
 
   const fetchGalleryData = async () => {
     try {
       const res = await axios.get(`${api}/allgalley`);
-      setGallery(res.data);
+      setGalleryItems(res.data);
     } catch (error) {
-      console.error("error fetching gallery", error);
+      console.error("Failed to fetch gallery", error);
     }
   };
 
   useEffect(() => {
     fetchGalleryData();
   }, []);
-
-  const handleGdelete = async (id: number) => {
+console.log(galleryItems)
+  const handleDeleteGalleryItem = async (id: number) => {
     try {
       await axios.delete(`${api}/deletegallery/${id}`);
-      setGallery(prevGallery => prevGallery.filter(galleryItem => galleryItem.id !== id));
+      setGalleryItems(prevGalleryItems => prevGalleryItems.filter(item => item.id !== id));
       toast.success("Deleted successfully");
     } catch (error) {
-      console.error("Failed to delete gallery", error);
+      console.error("Failed to delete gallery item", error);
       toast.error("Failed to delete!!!");
     }
   };
 
-  const handleEdit = (galleryItem: Gall) => {
-    setEditGallery(galleryItem); // Set the gallery item to be edited
+  const handleEditGalleryItem = (item: GalleryItem) => {
+    setEditGalleryItem(item); // Set the gallery item to be edited
   };
 
-  const handleUpdate = async (e: React.FormEvent) => {
+  const handleUpdateGalleryItem = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (editGallery) {
+    if (editGalleryItem) {
       try {
-        await axios.put(`${api}/updategallery/${editGallery.id}`, editGallery);
-        setGallery(prevGallery =>
-          prevGallery.map(galleryItem =>
-            galleryItem.id === editGallery.id ? editGallery : galleryItem
-          )
+        await axios.put(`${api}/updategallery/${editGalleryItem.id}`, editGalleryItem);
+        setGalleryItems(prevGalleryItems =>
+          prevGalleryItems.map(item => (item.id === editGalleryItem.id ? editGalleryItem : item))
         );
         toast.success("Updated successfully");
-        setEditGallery(null); // Close the form after updating
+        setEditGalleryItem(null); // Close the form after updating
       } catch (error) {
-        console.error("Failed to update gallery", error);
+        console.error("Failed to update gallery item", error);
         toast.error("Failed to update!!!");
+      }
+    }
+  };
+
+  const handleAddGalleryItem = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (newGalleryItem) {
+      try {
+        const res = await axios.post(`${api}/addgallery`, newGalleryItem);
+        setGalleryItems([...galleryItems, res.data]); // Add new gallery item to the list
+        toast.success("Added successfully");
+        setNewGalleryItem(null); // Close the form after adding
+      } catch (error) {
+        console.error("Failed to add gallery item", error);
+        toast.error("Failed to add!!!");
       }
     }
   };
@@ -67,7 +81,13 @@ const ManageGallery = () => {
   return (
     <>
       <div className="w-full pl-2 pt-5 max-w-7xl mx-auto">
-        <div className="overflow-x-auto">
+        <button
+          onClick={() => setNewGalleryItem({ id: 0, image: '', link: '', description: '' })}
+          className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-700"
+        >
+          Add New Gallery Item
+        </button>
+        <div className="overflow-x-auto mt-4">
           <table className="table-auto w-full text-left whitespace-no-wrap">
             <thead>
               <tr className="bg-gray-200">
@@ -80,19 +100,19 @@ const ManageGallery = () => {
               </tr>
             </thead>
             <tbody>
-              {gallery.length > 0 ? (
-                gallery.map((galleryItem: Gall) => (
-                  <tr key={galleryItem.id} className="border-t">
-                    <th className="px-4 py-2">{galleryItem.id}</th>
+              {galleryItems.length > 0 ? (
+                galleryItems.map(item => (
+                  <tr key={item.id} className="border-t">
+                    <th className="px-4 py-2">{item.id}</th>
                     <td className="px-4 py-2">
-                      <img src={galleryItem.image} alt="" className="w-12 h-12 object-cover rounded-md" />
+                      <img src={item.image} alt="" className="w-12 h-12 object-cover rounded-md" />
                     </td>
-                    <td className="px-4 py-2 max-w-96 max-h-96 flex-wrap flex">{galleryItem.link}</td>
-                    <td className="px-4 py-2">{galleryItem.description}</td>
+                    <td className="px-4 py-2">{item.link}</td>
+                    <td className="px-4 py-2">{item.description}</td>
                     <td className="px-4 py-2">
                       <button
                         className="text-blue-500 hover:text-blue-700"
-                        onClick={() => handleEdit(galleryItem)}
+                        onClick={() => handleEditGalleryItem(item)}
                       >
                         <FaEdit />
                       </button>
@@ -100,7 +120,7 @@ const ManageGallery = () => {
                     <td className="px-4 py-2">
                       <button
                         className="text-red-500 hover:text-red-700"
-                        onClick={() => handleGdelete(galleryItem.id)}
+                        onClick={() => handleDeleteGalleryItem(item.id)}
                       >
                         <FaTrash />
                       </button>
@@ -122,16 +142,16 @@ const ManageGallery = () => {
         </div>
 
         {/* Update Form */}
-        {editGallery && (
+        {editGalleryItem && (
           <div className="mt-5 p-6 bg-gray-100 rounded-md max-w-4xl mx-auto">
             <h3 className="text-xl font-bold mb-3">Update Gallery</h3>
-            <form onSubmit={handleUpdate}>
+            <form onSubmit={handleUpdateGalleryItem}>
               <div className="mb-4">
                 <label className="block text-sm font-medium text-gray-700">Image URL</label>
                 <input
                   type="text"
-                  value={editGallery.image}
-                  onChange={e => setEditGallery({ ...editGallery, image: e.target.value })}
+                  value={editGalleryItem.image}
+                  onChange={e => setEditGalleryItem({ ...editGalleryItem, image: e.target.value })}
                   className="mt-1 p-2 border border-gray-300 rounded-md w-full"
                 />
               </div>
@@ -139,16 +159,16 @@ const ManageGallery = () => {
                 <label className="block text-sm font-medium text-gray-700">Link</label>
                 <input
                   type="text"
-                  value={editGallery.link}
-                  onChange={e => setEditGallery({ ...editGallery, link: e.target.value })}
+                  value={editGalleryItem.link}
+                  onChange={e => setEditGalleryItem({ ...editGalleryItem, link: e.target.value })}
                   className="mt-1 p-2 border border-gray-300 rounded-md w-full"
                 />
               </div>
               <div className="mb-4">
                 <label className="block text-sm font-medium text-gray-700">Description</label>
                 <textarea
-                  value={editGallery.description}
-                  onChange={e => setEditGallery({ ...editGallery, description: e.target.value })}
+                  value={editGalleryItem.description}
+                  onChange={e => setEditGalleryItem({ ...editGalleryItem, description: e.target.value })}
                   className="mt-1 p-2 border border-gray-300 rounded-md w-full"
                 />
               </div>
@@ -161,7 +181,7 @@ const ManageGallery = () => {
                 </button>
                 <button
                   type="button"
-                  onClick={() => setEditGallery(null)} // Close the form without saving
+                  onClick={() => setEditGalleryItem(null)} // Close the form without saving
                   className="ml-2 bg-gray-300 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-400"
                 >
                   Cancel
@@ -170,6 +190,57 @@ const ManageGallery = () => {
             </form>
           </div>
         )}
+
+        {/* Add Form */}
+        {newGalleryItem && (
+          <div className="mt-5 p-6 bg-gray-100 rounded-md max-w-4xl mx-auto">
+            <h3 className="text-xl font-bold mb-3">Add New Gallery Item</h3>
+            <form onSubmit={handleAddGalleryItem}>
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-gray-700">Image URL</label>
+                <input
+                  type="text"
+                  value={newGalleryItem.image}
+                  onChange={e => setNewGalleryItem({ ...newGalleryItem, image: e.target.value })}
+                  className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-gray-700">Link</label>
+                <input
+                  type="text"
+                  value={newGalleryItem.link}
+                  onChange={e => setNewGalleryItem({ ...newGalleryItem, link: e.target.value })}
+                  className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-gray-700">Description</label>
+                <textarea
+                  value={newGalleryItem.description}
+                  onChange={e => setNewGalleryItem({ ...newGalleryItem, description: e.target.value })}
+                  className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+                />
+              </div>
+              <div className="flex justify-end">
+                <button
+                  type="submit"
+                  className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-700"
+                >
+                  Add
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setNewGalleryItem(null)} // Close the form without adding
+                  className="ml-2 bg-gray-300 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-400"
+                >
+                  Cancel
+                </button>
+              </div>
+            </form>
+          </div>
+        )}
+
         <ToastContainer />
       </div>
     </>

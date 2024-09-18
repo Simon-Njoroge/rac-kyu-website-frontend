@@ -72,6 +72,7 @@ const Manageprojects = () => {
     return (
         <>
             <div className="w-full overflowy-y-scroll max-h-screen pl-2 pt-5">
+                <button>Add</button>
                 <div className="overflow-x-auto">
                     <table className="table">
                         <thead>

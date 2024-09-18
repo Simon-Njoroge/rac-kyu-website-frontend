@@ -3,7 +3,8 @@ import { api } from '../home';
 import { useState, useEffect } from 'react';
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import { FadeLoader } from 'react-spinners';
-import { ToastContainer,toast } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
+
 interface Tevent {
     id: number;
     poster: string;
@@ -13,6 +14,8 @@ interface Tevent {
 const Manageevents = () => {
     const [events, setEvents] = useState<Tevent[]>([]);
     const [editEvent, setEditEvent] = useState<Tevent | null>(null); // State to handle the event being edited
+    const [newEvent, setNewEvent] = useState<Tevent | null>(null); // State for adding a new event
+    const [isAdding, setIsAdding] = useState(false); // State to track when the add form is open
 
     const fetcheventdata = async () => {
         try {
@@ -31,10 +34,10 @@ const Manageevents = () => {
         try {
             await axios.delete(`${api}/deleteevent/${id}`);
             setEvents(prevEvents => prevEvents.filter(event => event.id !== id));
-            toast.success("deleted successfully")
+            toast.success("Deleted successfully");
         } catch (error) {
             console.error("failed to delete event", error);
-            toast.error("failed to delete!!!")
+            toast.error("Failed to delete!!!");
         }
     };
 
@@ -50,11 +53,27 @@ const Manageevents = () => {
                 setEvents(prevEvents =>
                     prevEvents.map(event => event.id === editEvent.id ? editEvent : event)
                 );
-                toast.success("updated successfully")
-                setEditEvent(null); 
+                toast.success("Updated successfully");
+                setEditEvent(null);
             } catch (error) {
                 console.error("Failed to update event", error);
-                toast.error("failed to delete!!!")
+                toast.error("Failed to update!!!");
+            }
+        }
+    };
+
+    const handleAdd = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (newEvent) {
+            try {
+                const res = await axios.post(`${api}/addevent`, newEvent);
+                setEvents([...events, res.data]); // Add the new event to the list
+                toast.success("Added successfully");
+                setNewEvent(null);
+                setIsAdding(false); // Close the add form after submission
+            } catch (error) {
+                console.error("Failed to add event", error);
+                toast.error("Failed to add!!!");
             }
         }
     };
@@ -62,6 +81,12 @@ const Manageevents = () => {
     return (
         <>
             <div className="w-full overflow-scroll max-h-screen pl-2 pt-5">
+                <button
+                    onClick={() => setIsAdding(true)} // Open the add form when clicked
+                    className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-700 mb-4"
+                >
+                    Add
+                </button>
                 <div className="overflow-x-auto">
                     <table className="table">
                         <thead>
@@ -148,9 +173,50 @@ const Manageevents = () => {
                         </form>
                     </div>
                 )}
-               
+
+                {/* Add Form */}
+                {isAdding && (
+                    <div className="mt-5 p-4 bg-gray-100 rounded-md">
+                        <h3 className="text-xl font-bold mb-3">Add New Event</h3>
+                        <form onSubmit={handleAdd}>
+                            <div className="mb-3">
+                                <label className="block text-sm font-medium text-gray-700">Poster URL</label>
+                                <input
+                                    type="text"
+                                    value={newEvent?.poster || ""}
+                                    onChange={e => setNewEvent({ ...newEvent, poster: e.target.value } as Tevent)}
+                                    className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+                                />
+                            </div>
+                            <div className="mb-3">
+                                <label className="block text-sm font-medium text-gray-700">Description</label>
+                                <textarea
+                                    value={newEvent?.description || ""}
+                                    onChange={e => setNewEvent({ ...newEvent, description: e.target.value } as Tevent)}
+                                    className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+                                />
+                            </div>
+                            <div className="flex justify-end">
+                                <button
+                                    type="submit"
+                                    className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-700"
+                                >
+                                    Add Event
+                                </button>
+                                <button
+                                    type="button"
+                                    onClick={() => setIsAdding(false)} // Close the form without saving
+                                    className="ml-2 bg-gray-300 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-400"
+                                >
+                                    Cancel
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                )}
+
             </div>
-            <ToastContainer/>
+            <ToastContainer />
         </>
     );
 };

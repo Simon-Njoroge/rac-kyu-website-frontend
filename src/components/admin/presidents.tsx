@@ -66,6 +66,7 @@ const Managepresidents = () => {
 
   return (
     <div className="w-full overflow-scroll max-h-screen pl-2 pt-5">
+       <button>Add</button>
       <div className="overflow-x-auto">
         <table className="table-auto w-full">
           <thead>

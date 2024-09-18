@@ -3,7 +3,8 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import { FadeLoader } from 'react-spinners';
-import { ToastContainer,toast } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
+
 interface Tcourses {
     id: number;
     area: string;
@@ -14,13 +15,15 @@ interface Tcourses {
 const Managecourses = () => {
     const [courses, setCourses] = useState<Tcourses[]>([]);
     const [editCourse, setEditCourse] = useState<Tcourses | null>(null); // State to handle the course being edited
+    const [newCourse, setNewCourse] = useState<Tcourses | null>(null); // State to handle new course
+    const [showAddForm, setShowAddForm] = useState(false); // State to show/hide add form
 
     const fetchcoursesdata = async () => {
         try {
             const res = await axios.get(`${api}/allareas`);
             setCourses(res.data);
         } catch (error) {
-            console.error("failed to load our courses", error);
+            console.error("Failed to load courses", error);
         }
     };
 
@@ -32,10 +35,10 @@ const Managecourses = () => {
         try {
             await axios.delete(`${api}/deletearea/${id}`);
             setCourses(prevCourses => prevCourses.filter(course => course.id !== id));
-            toast.success("deleted successfully")
+            toast.success("Deleted successfully");
         } catch (error) {
-            console.error("failed to delete course", error);
-            toast.error("failed to delete!!!")
+            console.error("Failed to delete course", error);
+            toast.error("Failed to delete!");
         }
     };
 
@@ -48,14 +51,30 @@ const Managecourses = () => {
         if (editCourse) {
             try {
                 await axios.put(`${api}/updatearea/${editCourse.id}`, editCourse);
-                setCourses(prevCourses => 
-                    prevCourses.map(course => course.id === editCourse.id ? editCourse : course)
+                setCourses(prevCourses =>
+                    prevCourses.map(course => (course.id === editCourse.id ? editCourse : course))
                 );
-                toast.success("updated successfully")
-                setEditCourse(null); 
+                toast.success("Updated successfully");
+                setEditCourse(null);
             } catch (error) {
                 console.error("Failed to update course", error);
-                toast.error("failed to update!!!")
+                toast.error("Failed to update!");
+            }
+        }
+    };
+
+    const handleAddCourse = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (newCourse) {
+            try {
+                const res = await axios.post(`${api}/addarea`, newCourse);
+                setCourses([...courses, res.data]);
+                toast.success("Course added successfully");
+                setNewCourse(null); // Clear the form
+                setShowAddForm(false); // Hide the form after adding the course
+            } catch (error) {
+                console.error("Failed to add course", error);
+                toast.error("Failed to add course!");
             }
         }
     };
@@ -63,9 +82,60 @@ const Managecourses = () => {
     return (
         <>
             <div className="w-full overflow-y-scroll max-h-screen pl-2 pt-5">
+                {/* Add Course Button */}
+                <button
+                    onClick={() => setShowAddForm(!showAddForm)}
+                    className="mb-4 bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-700"
+                >
+                    {showAddForm ? "Close Add Form" : "Add Course"}
+                </button>
+
+                {/* Add Course Form */}
+                {showAddForm && (
+                    <div className="mt-5 p-4 bg-gray-100 rounded-md">
+                        <h3 className="text-xl font-bold mb-3">Add New Course</h3>
+                        <form onSubmit={handleAddCourse}>
+                            <div className="mb-3">
+                                <label className="block text-sm font-medium text-gray-700">Area</label>
+                                <input
+                                    type="text"
+                                    value={newCourse?.area || ''}
+                                    onChange={e => setNewCourse({ ...newCourse!, area: e.target.value })}
+                                    className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+                                />
+                            </div>
+                            <div className="mb-3">
+                                <label className="block text-sm font-medium text-gray-700">Picture URL</label>
+                                <input
+                                    type="text"
+                                    value={newCourse?.picture || ''}
+                                    onChange={e => setNewCourse({ ...newCourse!, picture: e.target.value })}
+                                    className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+                                />
+                            </div>
+                            <div className="mb-3">
+                                <label className="block text-sm font-medium text-gray-700">Description</label>
+                                <textarea
+                                    value={newCourse?.description || ''}
+                                    onChange={e => setNewCourse({ ...newCourse!, description: e.target.value })}
+                                    className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+                                />
+                            </div>
+                            <div className="flex justify-end">
+                                <button
+                                    type="submit"
+                                    className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-700"
+                                >
+                                    Add Course
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                )}
+
+                {/* Courses Table */}
                 <div className="overflow-x-auto">
                     <table className="table">
-                        {/* head */}
                         <thead>
                             <tr>
                                 <th>Id</th>
@@ -161,7 +231,7 @@ const Managecourses = () => {
                         </form>
                     </div>
                 )}
-                <ToastContainer/>
+                <ToastContainer />
             </div>
         </>
     );
