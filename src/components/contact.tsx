@@ -46,7 +46,7 @@ const Contactus = () => {
                 <div className='mt-5 text-center font-bold'>
                     <h1>Social Media Handles</h1>
                 </div>
-                <div className='flex flex-3 justify-between w-full mt-5'>
+                <div className='flex flex-3 justify-between w-full mt-5 text-center'>
                     <div>
                         <a href="https://web.facebook.com/rotaractclubofkirinyagauniversity" target="_blank">
                             <p className='cursor-pointer hover:text-pink-600 font-bold'>

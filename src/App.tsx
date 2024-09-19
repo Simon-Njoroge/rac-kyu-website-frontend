@@ -19,6 +19,7 @@ import Managecourses from './components/admin/courses';
 import Manageprojects from './components/admin/projects';
 import Manageevents from './components/admin/events';
 import ManageGallery from './components/admin/gallery';
+import Login from './components/admin/login';
 function App() {
   const router = createBrowserRouter([
     {
@@ -69,6 +70,11 @@ function App() {
     {
       path: '/project',
       element: <Projectpage />,
+      errorElement: <ErrorPage/>
+    },
+    {
+      path: '/admin',
+      element: <Login/>,
       errorElement: <ErrorPage/>
     },
     {

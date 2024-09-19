@@ -12,7 +12,8 @@
       { "source": "/managecourses", "destination": "/index.html" },
       { "source": "/manageprojects", "destination": "/index.html" },
       { "source": "/manageevents", "destination": "/index.html" },
-      { "source": "/manageGallery", "destination": "/index.html" }
+      { "source": "/manageGallery", "destination": "/index.html" },
+      { "source": "/admin", "destination": "/index.html" }
     ]
   }
   

@@ -4,6 +4,7 @@ import axios from 'axios';
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import { FadeLoader } from 'react-spinners';
 import { ToastContainer, toast } from 'react-toastify';
+
 interface Prez {
   id: number;
   president_name: string;
@@ -15,6 +16,13 @@ const Managepresidents = () => {
   const [presidents, setPresidents] = useState<Prez[]>([]);
   const [loading, setLoading] = useState(true);
   const [editPresident, setEditPresident] = useState<Prez | null>(null); // State for editing president
+  const [newPresident, setNewPresident] = useState<Prez>({
+    id: 0,
+    president_name: '',
+    year: '',
+    image: ''
+  }); // State for new president
+  const [showAddForm, setShowAddForm] = useState(false); // Toggle for add form
 
   const fetchPresidentData = async () => {
     try {
@@ -35,10 +43,10 @@ const Managepresidents = () => {
     try {
       await axios.delete(`${api}/deletepresident/${id}`);
       setPresidents(prevPres => prevPres.filter(pres => pres.id !== id));
-      toast.success("deleted successfuly")
+      toast.success("Deleted successfully");
     } catch (error) {
       console.error("Failed to delete president", error);
-      toast.error("deletion failed!!!")
+      toast.error("Deletion failed!");
     }
   };
 
@@ -53,20 +61,38 @@ const Managepresidents = () => {
         await axios.put(`${api}/updatepresident/${editPresident.id}`, editPresident);
         setPresidents(prevPres =>
           prevPres.map(pres => (pres.id === editPresident.id ? editPresident : pres))
-         
         );
-        toast.success("udated successfuly")
+        toast.success("Updated successfully");
         setEditPresident(null); // Close the form after updating
       } catch (error) {
         console.error("Failed to update president", error);
-        toast.error("failed to update!!!")
+        toast.error("Failed to update!");
       }
+    }
+  };
+
+  const handleAddPresident = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      const res = await axios.post(`${api}/addpresident`, newPresident);
+      setPresidents([...presidents, res.data]); // Add the new president to the list
+      toast.success("President added successfully!");
+      setShowAddForm(false); // Hide the form after adding
+      setNewPresident({ id: 0, president_name: '', year: '', image: '' }); // Reset form fields
+    } catch (error) {
+      console.error("Failed to add president", error);
+      toast.error("Failed to add president!");
     }
   };
 
   return (
     <div className="w-full overflow-scroll max-h-screen pl-2 pt-5">
-       <button>Add</button>
+      <button
+        onClick={() => setShowAddForm(!showAddForm)} // Toggle add form visibility
+        className="bg-green-500 text-white px-4 py-2 rounded-md mb-4"
+      >
+        {showAddForm ? 'Cancel' : 'Add President'}
+      </button>
       <div className="overflow-x-auto">
         <table className="table-auto w-full">
           <thead>
@@ -128,6 +154,53 @@ const Managepresidents = () => {
           </tbody>
         </table>
 
+        {/* Add President Form */}
+        {showAddForm && (
+          <div className="mt-5 p-4 bg-gray-100 rounded-md">
+            <h3 className="text-xl font-bold mb-3">Add President</h3>
+            <form onSubmit={handleAddPresident}>
+              <div className="mb-3">
+                <label className="block text-sm font-medium text-gray-700">President Name</label>
+                <input
+                  type="text"
+                  value={newPresident.president_name}
+                  onChange={e => setNewPresident({ ...newPresident, president_name: e.target.value })}
+                  className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+                  required
+                />
+              </div>
+              <div className="mb-3">
+                <label className="block text-sm font-medium text-gray-700">Year</label>
+                <input
+                  type="text"
+                  value={newPresident.year}
+                  onChange={e => setNewPresident({ ...newPresident, year: e.target.value })}
+                  className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+                  required
+                />
+              </div>
+              <div className="mb-3">
+                <label className="block text-sm font-medium text-gray-700">Image URL</label>
+                <input
+                  type="text"
+                  value={newPresident.image}
+                  onChange={e => setNewPresident({ ...newPresident, image: e.target.value })}
+                  className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+                  required
+                />
+              </div>
+              <div className="flex justify-end">
+                <button
+                  type="submit"
+                  className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-700"
+                >
+                  Add President
+                </button>
+              </div>
+            </form>
+          </div>
+        )}
+
         {/* Update Form */}
         {editPresident && (
           <div className="mt-5 p-4 bg-gray-100 rounded-md">
@@ -179,7 +252,7 @@ const Managepresidents = () => {
           </div>
         )}
       </div>
-      <ToastContainer/>
+      <ToastContainer />
     </div>
   );
 };

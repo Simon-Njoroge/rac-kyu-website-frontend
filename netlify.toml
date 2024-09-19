@@ -62,3 +62,8 @@
   from = "/manageGallery"
   to = "/index.html"
   status = 200
+
+[[redirects]]
+  from = "/admin"
+  to = "/index.html"
+  status = 200

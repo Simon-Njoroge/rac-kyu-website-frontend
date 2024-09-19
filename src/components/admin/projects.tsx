@@ -16,6 +16,8 @@ interface proj {
 const Manageprojects = () => {
     const [projects, setProjects] = useState<proj[]>([]);
     const [editProject, setEditProject] = useState<proj | null>(null); // State for editing project
+    const [newProject, setNewProject] = useState<proj | null>(null);   // State for adding new project
+    const [showAddForm, setShowAddForm] = useState(false); // Toggle Add form
 
     const fetchProjectData = async () => {
         try {
@@ -69,10 +71,35 @@ const Manageprojects = () => {
         }
     };
 
+    const handleAddProject = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (newProject) {
+            try {
+                const res = await axios.post(`${api}/addproject`, newProject);
+                setProjects([...projects, res.data]); // Add new project to the list
+                toast.success("Project added successfully", {
+                    position: "top-right",
+                    theme: "colored",
+                });
+                setNewProject(null); // Clear form
+                setShowAddForm(false); // Close the form
+            } catch (error) {
+                console.error("Failed to add project", error);
+                toast.error("Failed to add project!!!");
+            }
+        }
+    };
+
     return (
         <>
             <div className="w-full overflowy-y-scroll max-h-screen pl-2 pt-5">
-                <button>Add</button>
+                <button
+                    onClick={() => setShowAddForm(true)}
+                    className="mb-5 bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-700"
+                >
+                    Add Project
+                </button>
+
                 <div className="overflow-x-auto">
                     <table className="table">
                         <thead>
@@ -120,6 +147,56 @@ const Manageprojects = () => {
                         </tbody>
                     </table>
                 </div>
+
+                {/* Add Project Form */}
+                {showAddForm && (
+                    <div className="mt-5 p-4 bg-gray-100 rounded-md">
+                        <h3 className="text-xl font-bold mb-3">Add New Project</h3>
+                        <form onSubmit={handleAddProject}>
+                            <div className="mb-3">
+                                <label className="block text-sm font-medium text-gray-700">Project Name</label>
+                                <input
+                                    type="text"
+                                    value={newProject?.project || ''}
+                                    onChange={e => setNewProject({ ...newProject, project: e.target.value } as proj)}
+                                    className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+                                />
+                            </div>
+                            <div className="mb-3">
+                                <label className="block text-sm font-medium text-gray-700">Date</label>
+                                <input
+                                    type="date"
+                                    value={newProject?.date || ''}
+                                    onChange={e => setNewProject({ ...newProject, date: e.target.value } as proj)}
+                                    className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+                                />
+                            </div>
+                            <div className="mb-3">
+                                <label className="block text-sm font-medium text-gray-700">Description</label>
+                                <textarea
+                                    value={newProject?.description || ''}
+                                    onChange={e => setNewProject({ ...newProject, description: e.target.value } as proj)}
+                                    className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+                                />
+                            </div>
+                            <div className="flex justify-end">
+                                <button
+                                    type="submit"
+                                    className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-700"
+                                >
+                                    Add Project
+                                </button>
+                                <button
+                                    type="button"
+                                    onClick={() => setShowAddForm(false)} // Close the form without saving
+                                    className="ml-2 bg-gray-300 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-400"
+                                >
+                                    Cancel
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                )}
 
                 {/* Update Form */}
                 {editProject && (
