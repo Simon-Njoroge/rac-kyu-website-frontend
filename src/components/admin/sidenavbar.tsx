@@ -6,7 +6,7 @@ const Sidenav = () => {
     const Navigate= useNavigate()
     const Handlelogout=()=>{
         try{
-        localStorage.removeItem('token')
+        localStorage.removeItem('authToken')
         Navigate('/')
         }
         catch(error){
