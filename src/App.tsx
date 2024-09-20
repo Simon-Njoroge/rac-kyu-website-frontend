@@ -20,6 +20,7 @@ import Manageprojects from './components/admin/projects';
 import Manageevents from './components/admin/events';
 import ManageGallery from './components/admin/gallery';
 import Login from './components/admin/login';
+import PrivateRoute from './components/admin/protect';
 function App() {
   const router = createBrowserRouter([
     {
@@ -79,32 +80,32 @@ function App() {
     },
     {
       path: '/managehome',
-      element: <Admincontainer><Managehome/></Admincontainer>,
+      element: <PrivateRoute><Admincontainer><Managehome/></Admincontainer></PrivateRoute>,
       errorElement: <ErrorPage/>
     },
     {
       path: '/managepresidents',
-      element: <Admincontainer><Managepresidents/></Admincontainer>,
+      element: <PrivateRoute><Admincontainer><Managepresidents/></Admincontainer></PrivateRoute>,
       errorElement: <ErrorPage/>
     },
     {
       path: '/managecourses',
-      element: <Admincontainer><Managecourses/></Admincontainer>,
+      element: <PrivateRoute><Admincontainer><Managecourses/></Admincontainer></PrivateRoute>,
       errorElement: <ErrorPage/>
     },
     {
       path: '/manageprojects',
-      element: <Admincontainer><Manageprojects/></Admincontainer>,
+      element: <PrivateRoute><Admincontainer><Manageprojects/></Admincontainer></PrivateRoute>,
       errorElement: <ErrorPage/>
     },
     {
       path: '/manageevents',
-      element: <Admincontainer><Manageevents/></Admincontainer>,
+      element:<PrivateRoute><Admincontainer><Manageevents/></Admincontainer></PrivateRoute> ,
       errorElement: <ErrorPage/>
     },
     {
       path: '/manageGallery',
-      element: <Admincontainer><ManageGallery/></Admincontainer>,
+      element: <PrivateRoute><Admincontainer><ManageGallery/></Admincontainer></PrivateRoute>,
       errorElement: <ErrorPage/>
     },
   ])

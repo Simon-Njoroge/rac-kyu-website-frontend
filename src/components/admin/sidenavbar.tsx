@@ -1,7 +1,19 @@
 import { Link } from "react-router-dom";
 import { FaHome, FaUserTie, FaBook, FaProjectDiagram, FaCalendarAlt, FaImage, FaSignOutAlt } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const Sidenav = () => {
+    const Navigate= useNavigate()
+    const Handlelogout=()=>{
+        try{
+        localStorage.removeItem('token')
+        Navigate('/')
+        }
+        catch(error){
+            console.error("logout failed",error)
+        }
+    }
+   
     return (
         <>
             <div className="bg-blue-950 h-screen w-48 text-white overflow-y-hidden">
@@ -36,7 +48,7 @@ const Sidenav = () => {
                             <FaImage className="mr-2" /> Manage Gallery
                         </li>
                     </Link>
-                    <li className="cursor-pointer mb-2 flex items-center bg-blue-950 text-white">
+                    <li className="cursor-pointer mb-2 flex items-center bg-blue-950 text-white" onClick={Handlelogout} >
                         <FaSignOutAlt className="mr-2" /> Logout
                     </li>
                 </ul>
