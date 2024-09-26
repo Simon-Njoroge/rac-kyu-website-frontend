@@ -13,6 +13,8 @@
       { "source": "/manageprojects", "destination": "/index.html" },
       { "source": "/manageevents", "destination": "/index.html" },
       { "source": "/manageGallery", "destination": "/index.html" },
+      { "source": "/download", "destination": "/index.html" },
+      { "source": "/blogs", "destination": "/index.html" },
       { "source": "/admin", "destination": "/index.html" }
     ]
   }

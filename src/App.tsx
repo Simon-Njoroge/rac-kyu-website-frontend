@@ -21,6 +21,8 @@ import Manageevents from './components/admin/events';
 import ManageGallery from './components/admin/gallery';
 import Login from './components/admin/login';
 import PrivateRoute from './components/admin/protect';
+import Downloadspage from './pages/downloads_page';
+import BlogsPage from './pages/blog_news';
 function App() {
   const router = createBrowserRouter([
     {
@@ -56,6 +58,16 @@ function App() {
     {
       path: '/gallery',
       element: <Gallerypage />,
+      errorElement: <ErrorPage/>
+    },
+    {
+      path: '/blogs',
+      element: <BlogsPage />,
+      errorElement: <ErrorPage/>
+    },
+    {
+      path: '/download',
+      element: <Downloadspage />,
       errorElement: <ErrorPage/>
     },
     {

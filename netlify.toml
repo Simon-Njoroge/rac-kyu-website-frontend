@@ -63,6 +63,16 @@
   to = "/index.html"
   status = 200
 
+ [[redirects]]
+  from = "/download"
+  to = "/index.html"
+  status = 200
+
+  [[redirects]]
+  from = "/blogs"
+  to = "/index.html"
+  status = 200 
+
 [[redirects]]
   from = "/admin"
   to = "/index.html"

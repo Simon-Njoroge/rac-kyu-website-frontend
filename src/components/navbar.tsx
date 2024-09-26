@@ -36,61 +36,68 @@ const Navbar = () => {
               <Link to="/">Home</Link>
             </li>
             <li className='relative'>
-              <div 
+              <div
                 className='hover:border-b-2 cursor-pointer hover:border-pink-600 pb-1'
                 onClick={toggleDropdown}
               >
                 <span>About-us</span>
               </div>
-              <ul 
+              <ul
                 className={`absolute left-0 mt-2 bg-white shadow-lg w-52 ${isDropdownOpen ? 'block' : 'hidden'}`}
               >
-                 <Link to="/council-president" onClick={closeDropdown}>
-                <li className='p-2 hover:bg-gray-100'>
-                 Council of Presidents
-                </li>
+                <Link to="/council-president" onClick={closeDropdown}>
+                  <li className='p-2 hover:bg-gray-100'>
+                    Council of Presidents
+                  </li>
                 </Link>
                 <Link to="/our-history" onClick={closeDropdown}>
-                <li className='p-2 hover:bg-gray-100'>
-                  Our History
-                </li>
+                  <li className='p-2 hover:bg-gray-100'>
+                    Our History
+                  </li>
                 </Link>
               </ul>
             </li>
             <Link to="/our-courses">
-            <li className='hover:border-b-2 cursor-pointer hover:border-pink-600 pb-1'>
-             Our courses
-            </li>
+              <li className='hover:border-b-2 cursor-pointer hover:border-pink-600 pb-1'>
+                Our courses
+              </li>
             </Link>
             <Link to="/project">
-            <li className='hover:border-b-2 cursor-pointer hover:border-pink-600 pb-1'>
-              Projects
-            </li>
+              <li className='hover:border-b-2 cursor-pointer hover:border-pink-600 pb-1'>
+                Projects
+              </li>
             </Link>
             <Link to="/events">
-            <li className='hover:border-b-2 cursor-pointer hover:border-pink-600 pb-1'>
-              Events
-            </li>
+              <li className='hover:border-b-2 cursor-pointer hover:border-pink-600 pb-1'>
+                Events
+              </li>
             </Link>
-            <Link to="/gallery">
+
             <li className='hover:border-b-2 cursor-pointer hover:border-pink-600 pb-1'>
-             Gallery
+              <div className="dropdown dropdown-hover">
+                <div tabIndex={0} role="" >News</div>
+                <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
+                  <Link to="/blogs"> <li><a>Blogs</a></li></Link>
+                  <Link to="/gallery"> <li><a>Gallery</a></li>  </Link>
+                  <Link to="/download"><li><a>Downloads</a></li></Link>
+                </ul>
+              </div>
             </li>
-            </Link>
+
             <Link to="/join-us">
-            <li className='hover:border-b-2 cursor-pointer hover:border-pink-600 pb-1'>
-             Join us
-            </li>
+              <li className='hover:border-b-2 cursor-pointer hover:border-pink-600 pb-1'>
+                Join us
+              </li>
             </Link>
             <Link to="/donate">
-            <li className='hover:border-b-2 cursor-pointer hover:border-pink-600 pb-1'>
-            Donate
-            </li>
+              <li className='hover:border-b-2 cursor-pointer hover:border-pink-600 pb-1'>
+                Donate
+              </li>
             </Link>
             <Link to="/contact-us">
-            <li className='hover:border-b-2 cursor-pointer hover:border-pink-600 pb-1'>
-             Contact-us
-            </li>
+              <li className='hover:border-b-2 cursor-pointer hover:border-pink-600 pb-1'>
+                Contact-us
+              </li>
             </Link>
           </ul>
         </nav>

@@ -46,7 +46,7 @@ const ManageHome = () => {
   };
 
   const handleEdit = (hom: Home) => {
-    setEditHome(hom); // Set the home item to be edited
+    setEditHome(hom); 
   };
 
   const handleUpdate = async (e: React.FormEvent) => {
@@ -58,7 +58,7 @@ const ManageHome = () => {
           prevHome.map((hom) => (hom.id === editHome.id ? editHome : hom))
         );
         toast.success('Updated successfully');
-        setEditHome(null); // Close the form after updating
+        setEditHome(null); 
       } catch (error) {
         console.error('Failed to update home', error);
         toast.error('Failed to update!');
@@ -69,11 +69,11 @@ const ManageHome = () => {
   const handleAdd = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const res = await axios.post(`${api}/addhomepic`, newHome); // Post the new home data
+      const res = await axios.post(`${api}/addhomepic`, newHome);
       setHome((prevHome) => [...prevHome, res.data]);
       toast.success('Added successfully');
-      setShowAddForm(false); // Hide the form after adding
-      setNewHome({ id: 0, picture: '', description: '' }); // Clear the form
+      setShowAddForm(false); 
+      setNewHome({ id: 0, picture: '', description: '' });
     } catch (error) {
       console.error('Failed to add home', error);
       toast.error('Failed to add!');
@@ -122,7 +122,7 @@ const ManageHome = () => {
               </button>
               <button
                 type="button"
-                onClick={() => setShowAddForm(false)} // Close the form without adding
+                onClick={() => setShowAddForm(false)} 
                 className="ml-2 bg-gray-300 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-400"
               >
                 Cancel

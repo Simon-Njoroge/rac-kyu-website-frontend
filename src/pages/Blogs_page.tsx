@@ -1,8 +1,8 @@
-import Blogscontainer from "../containers/blogs-container"
+import Joinuscontainer from "../containers/blogs-container"
 const Blogpage=()=>{
     return(
         <>
-        <Blogscontainer/>
+        <Joinuscontainer/>
         </>
     )
 }

@@ -46,7 +46,7 @@ const Manageprojects = () => {
     };
 
     const handleEdit = (project: proj) => {
-        setEditProject(project); // Set the project to be edited
+        setEditProject(project); 
     };
 
     const handleUpdate = async (e: React.FormEvent) => {
@@ -63,7 +63,7 @@ const Manageprojects = () => {
                     position: "top-right",
                     theme: "colored",
                 });
-                setEditProject(null); // Close the form after updating
+                setEditProject(null); 
             } catch (error) {
                 console.error("Failed to update project", error);
                 toast.error("Failed to update!!!");
@@ -76,13 +76,13 @@ const Manageprojects = () => {
         if (newProject) {
             try {
                 const res = await axios.post(`${api}/addproject`, newProject);
-                setProjects([...projects, res.data]); // Add new project to the list
+                setProjects([...projects, res.data]); 
                 toast.success("Project added successfully", {
                     position: "top-right",
                     theme: "colored",
                 });
-                setNewProject(null); // Clear form
-                setShowAddForm(false); // Close the form
+                setNewProject(null); 
+                setShowAddForm(false); 
             } catch (error) {
                 console.error("Failed to add project", error);
                 toast.error("Failed to add project!!!");

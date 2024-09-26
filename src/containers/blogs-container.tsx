@@ -1,7 +1,7 @@
 import Navbar from "../components/navbar"
 import Footer from "../components/footer"
 import Join from "../components/join"
-const Blogscontainer=()=>{
+const Joinuscontainer=()=>{
     return(
         <>
         <Navbar/>
@@ -10,4 +10,4 @@ const Blogscontainer=()=>{
         </>
     )
 }
-export default Blogscontainer
+export default Joinuscontainer
