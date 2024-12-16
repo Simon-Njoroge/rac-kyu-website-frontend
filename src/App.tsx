@@ -1,7 +1,7 @@
 
 import './App.scss'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Homepage from './pages/home_page';
+// import Homepage from './pages/home_page';
 import Blogpage from './pages/Blogs_page';
 import Contactuspage from './pages/contact-us_page';
 import Councilpage from './pages/council_president_page';
@@ -23,11 +23,12 @@ import Login from './components/admin/login';
 import PrivateRoute from './components/admin/protect';
 import Downloadspage from './pages/downloads_page';
 import BlogsPage from './pages/blog_news';
+import UnderMaintenance from './components/maintenace';
 function App() {
   const router = createBrowserRouter([
     {
       path: '/',
-      element: <Homepage />,
+      element: <UnderMaintenance />,
       errorElement: <ErrorPage/>
     },
     {
