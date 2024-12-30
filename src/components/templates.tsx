@@ -79,7 +79,7 @@ function Templates() {
                                     <td colSpan={5} className="text-center py-10">
                                         <div className="flex flex-col items-center gap-3">
                                             <ClipLoader color="#ff007f" />
-                                            <p>Loading Downloads...</p>
+                                            <p>Loading Templates...</p>
                                         </div>
                                     </td>
                                 </tr>
