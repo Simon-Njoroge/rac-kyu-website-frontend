@@ -51,7 +51,7 @@ const Gallery = () => {
                   <p className="text-sm text-white mt-1">
                     {new Date(gall.created_on).toLocaleDateString()}
                   </p>
-                  <p className="text-white mt-2">{gall.description}</p>
+                  {/* <p className="text-white mt-2">{gall.description}</p> */}
                   <a
                     href={gall.gallery_url}
                     target="_blank"
