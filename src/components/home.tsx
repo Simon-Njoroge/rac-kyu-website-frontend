@@ -1,5 +1,5 @@
 import axios from "axios";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import { Eye, BicepsFlexed, Activity } from 'lucide-react';
 import joinus from '../assets/join_us_today.avif';
@@ -177,7 +177,7 @@ const Home = () => {
               <img src={course.Course_Image} alt="" className="h-48 w-full rounded" />
               <h1 className="text-center my-5 font-bold text-2xl">{course.Course_Name}</h1>
               {/* <p>{course.description}</p> */}
-              <a href={`/Clearnmore/${course.id}/?query=${course.Course_Name}`}><button className="text-pink-600 hover:underline mb-2  cursor-pointer">Learnmore</button></a>
+              <Link to={`/Clearnmore/${course.id}/?query=${course.Course_Name}`}><button className="text-pink-600 hover:underline mb-2  cursor-pointer">Learnmore</button></Link>
             </div>
           ))
         ) : (
