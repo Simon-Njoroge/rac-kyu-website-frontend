@@ -2,89 +2,90 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { api } from "./home";
 import { ClipLoader } from "react-spinners";
-interface Tdownload {
-  id: number;
-  title: string;
-  descrition: string;
-  Link: string;
-}
+import { Tdownload } from "./alltypes";
 
 const Downloads = () => {
-  const [Download, setDownload] = useState<Tdownload[]>([]);
+  const [downloads, setDownloads] = useState<Tdownload[]>([]);
 
-  const Handleblogdata = async () => {
+  const fetchDownloads = async () => {
     try {
-      const res = await axios.get(`${api}/alldownloads`);
-      setDownload(res.data);
+      const res = await axios.get(`${api}/api/all/download`);
+      setDownloads(res.data);
     } catch (error) {
       console.error("Failed to load downloads", error);
     }
   };
 
   useEffect(() => {
-    Handleblogdata();
+    fetchDownloads();
   }, []);
 
   return (
     <>
-      <div>
-        <p className="bg-pink-600 text-center h-20 flex items-center mt-20 mx-10 justify-center text-white font-bold text-xl">
-          Downloads
-        </p>
-      </div>
-      <div className="overflow-x-auto mx-10 mt-10">
-        <table className="min-w-full table-auto bg-white shadow-lg rounded-lg">
-          {/* Table Head */}
-          <thead>
-            <tr className="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
-              <th className="py-3 px-6 text-left">Title</th>
-              <th className="py-3 px-6 text-left">Description</th>
-              <th className="py-3 px-6 text-center">Options</th>
-            </tr>
-          </thead>
-         
-          <tbody className="text-gray-600 text-sm font-light">
-            {Download.length > 0 ? (
-              Download.map((down) => (
-                <tr
-                  key={down.id}
-                  className="border-b border-gray-200 hover:bg-gray-100"
-                >
-                  <td className="py-3 px-6 text-left whitespace-nowrap">
-                    {down.title}
-                  </td>
-                  <td className="py-3 px-6 text-left">
-                    {down.descrition}
-                  </td>
-                  <td className="py-3 px-6 text-center">
-                    <div className="flex item-center justify-center space-x-4">
-                      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                        <a
-                          href={down.Link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="bg-blue-500 hover:bg-blue-700"
-                        >
-                          Open
-                        </a>
-                      </button>
-                      <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-                        <a href={down.Link} download target="_blank" className="bg-green-500 hover:bg-green-700">
-                          Download
-                        </a>
-                      </button>
+      <div className="bg-gray-100">
+        {/* Heading */}
+        <div>
+          <p className="bg-pink-600 text-center h-20 flex items-center justify-center md:mx-0 text-white font-bold text-xl mt-10 mx-0">
+            Downloads
+          </p>
+        </div>
+
+        {/* Table Container */}
+        <div className="overflow-x-auto mx-0 sm:mx-10 md:mx-0 mt-10">
+          <table className="min-w-full table-auto bg-white shadow-md rounded-lg mb-2">
+            {/* Table Head */}
+            <thead>
+              <tr className="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+                <th className="py-3 px-6 text-left">Title</th>
+                <th className="py-3 px-6 text-left">Filetype</th>
+                <th className="py-3 px-6 text-center">Description</th>
+                <th className="py-3 px-6 text-center">Uploaded On</th>
+                <th className="py-3 px-6 text-center">Options</th>
+              </tr>
+            </thead>
+
+            {/* Table Body */}
+            <tbody className="text-gray-600 text-sm font-light">
+              {downloads.length > 0 ? (
+                downloads.map((down) => (
+                  <tr
+                    key={down.id}
+                    className="border-b border-gray-200 hover:bg-gray-100"
+                  >
+                    <td className="py-3 px-6 text-left whitespace-nowrap">
+                      {down.title}
+                    </td>
+                    <td className="py-3 px-6 text-left">{down.file_type}</td>
+                    <td className="py-3 px-6 text-center">{down.description}</td>
+                    <td className="py-3 px-6 text-center">
+                      {new Date(down.uploaded_on).toLocaleDateString()}
+                    </td>
+                    <td className="py-3 px-6 text-center">
+                      <a
+                        href={down.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        download
+                        className="bg-pink-600 hover:bg-pink-700 text-white py-1 px-4 rounded-md transition duration-200"
+                      >
+                        Download
+                      </a>
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan={5} className="text-center py-10">
+                    <div className="flex flex-col items-center gap-3">
+                      <ClipLoader color="#ff007f" />
+                      <p>Loading Downloads...</p>
                     </div>
                   </td>
                 </tr>
-              ))
-            ) : (
-              <div className="flex justify-center items-center h-screen">
-              <ClipLoader  color="#ff007f" />
-              <p>loading Downloads....</p>
-            </div>
-            )}
-          </tbody>
-        </table>
+              )}
+            </tbody>
+          </table>
+        </div>
       </div>
     </>
   );

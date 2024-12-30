@@ -9,11 +9,11 @@ const Donate = () => {
 
   return (
     <>
-      <div className="mt-20 mx-5 md:mx-20">
+      <div className="mt-10 mx-0 md:mx-0 bg-gray-100">
         <p className="bg-pink-600 text-center h-20 flex items-center justify-center text-white font-bold text-xl">
           Donate
         </p>
-        <div className="text-center mt-5">
+        <div className="text-center mt-5 text-black">
           <TypeAnimation
             sequence={[
               'Support Rotaract Club of Kirinyaga University!',
@@ -32,7 +32,7 @@ const Donate = () => {
           />
         </div>
 
-        <div className="mt-10 flex flex-col items-center">
+        <div className="mt-10 flex flex-col items-center text-black">
           <h1 className="text-lg md:text-xl font-semibold mb-3 text-center">
             Give via M-Pesa
           </h1>

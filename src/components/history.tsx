@@ -1,15 +1,15 @@
 import rotaract from '../assets/rotaract.jpg'
-const History=()=>{
-    return(
+const History = () => {
+    return (
         <>
-        <div className="mx-10">
-          <p className="bg-pink-600 text-center h-20 mt-20 flex items-center justify-center text-white font-bold text-xl">
+            <div className="mx-0 bg-gray-100">
+                <p className="bg-pink-600 text-center h-20 mt-10 flex items-center justify-center text-white font-bold text-xl">
                     our history
                 </p>
                 <img src={rotaract} alt="" className='mt-5 rounded' />
-                    <p className="mt-5">The Rotaract Club of Kirinyaga University was established in 2015 with a vision to empower students to serve their communities, develop leadership skills, and foster international understanding and goodwill. Over the years, the club has grown significantly in both membership and impact, becoming a vibrant part of the university's community service and leadership activities.</p>
-                </div>
-     
+                <p className="mt-5 text-black">The Rotaract Club of Kirinyaga University was established in 2015 with a vision to empower students to serve their communities, develop leadership skills, and foster international understanding and goodwill. Over the years, the club has grown significantly in both membership and impact, becoming a vibrant part of the university's community service and leadership activities.</p>
+            </div>
+
         </>
     )
 }

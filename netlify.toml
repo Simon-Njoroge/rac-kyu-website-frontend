@@ -1,35 +1,55 @@
 [[redirects]]
-  from = "/council-president"
+  from = "/en-us/council-president"
   to = "/index.html"
   status = 200
 
 [[redirects]]
-  from = "/our-history"
+  from = "/en-us/our-history"
   to = "/index.html"
   status = 200
 
 [[redirects]]
-  from = "/project"
+  from = "/en-us/project"
   to = "/index.html"
   status = 200
 
 [[redirects]]
-  from = "/events"
+  from = "/en-us/events"
   to = "/index.html"
   status = 200
 
 [[redirects]]
-  from = "/gallery"
+  from = "/en-us/gallery"
   to = "/index.html"
   status = 200
 
 [[redirects]]
-  from = "/donate"
+  from = "/en-us/donate"
   to = "/index.html"
   status = 200
 
 [[redirects]]
-  from = "/contact-us"
+  from = "/en-us/contact-us"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/en-us/blogs"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/en-us/board"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/en-us/members"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/en-us/templates"
   to = "/index.html"
   status = 200
 

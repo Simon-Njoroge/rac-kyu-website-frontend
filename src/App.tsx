@@ -1,8 +1,8 @@
 
 import './App.scss'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-// import Homepage from './pages/home_page';
-import Blogpage from './pages/Blogs_page';
+import Homepage from './pages/home_page';
+import Blogpage from './pages/joinuspage';
 import Contactuspage from './pages/contact-us_page';
 import Councilpage from './pages/council_president_page';
 import Donatepage from './pages/donate_page';
@@ -23,68 +23,116 @@ import Login from './components/admin/login';
 import PrivateRoute from './components/admin/protect';
 import Downloadspage from './pages/downloads_page';
 import BlogsPage from './pages/blog_news';
-import UnderMaintenance from './components/maintenace';
+import Presidentlearnmorepage from './pages/presidentlearnmorepage';
+import Courseslearnmorepage from './pages/courseslearnmorepage';
+import Projectlearnmorepage from './pages/projectlearnmorepage';
+import Bloglearnmorepage from './pages/bloglearnmorepage';
+import Boardpage from './pages/boardpage';
+import Boardlearnmorepage from './pages/boardlearnmorepage';
+import Memberspage from './pages/memberspage';
+import Templatespage from './pages/templatespage';
+// import UnderMaintenance from './components/maintenace';
 function App() {
   const router = createBrowserRouter([
     {
       path: '/',
-      element: <UnderMaintenance />,
+      element: <Homepage />,
       errorElement: <ErrorPage/>
     },
     {
-      path: '/join-us',
+      path: '/en-us/join-us',
       element: <Blogpage />,
       errorElement: <ErrorPage/>
     },
     {
-      path: '/contact-us',
+      path: '/en-us/contact-us',
       element: <Contactuspage />,
       errorElement: <ErrorPage/>
     },
     {
-      path: '/council-president',
+      path: '/en-us/council-president',
       element: <Councilpage />,
       errorElement: <ErrorPage/>
     },
     {
-      path: '/donate',
+      path:'/Plearnmore/:id',
+      element:<Presidentlearnmorepage/>,
+      errorElement:<ErrorPage/>
+    },
+    {
+      path: '/en-us/donate',
       element: <Donatepage />,
       errorElement: <ErrorPage/>
     },
     {
-      path: '/events',
+      path: '/en-us/events',
       element: <Eventpage />,
       errorElement: <ErrorPage/>
     },
     {
-      path: '/gallery',
+      path: '/en-us/gallery',
       element: <Gallerypage />,
       errorElement: <ErrorPage/>
     },
     {
-      path: '/blogs',
+      path: '/en-us/blogs',
       element: <BlogsPage />,
       errorElement: <ErrorPage/>
     },
     {
-      path: '/download',
+      path:'Blearnmore/:id',
+      element:<Bloglearnmorepage/>,
+      errorElement:<ErrorPage/>
+    },
+    {
+      path: '/en-us/download',
       element: <Downloadspage />,
       errorElement: <ErrorPage/>
     },
     {
-      path: '/our-courses',
+      path: '/en-us/our-courses',
       element: <Coursepage />,
       errorElement: <ErrorPage/>
     },
     {
-      path: '/our-history',
+      path:'Clearnmore/:id',
+      element: <Courseslearnmorepage/>,
+      errorElement:<ErrorPage/>
+    },
+    {
+      path: '/en-us/our-history',
       element: <Histroypage />,
       errorElement: <ErrorPage/>
     },
     {
-      path: '/project',
+      path: '/en-us/project',
       element: <Projectpage />,
       errorElement: <ErrorPage/>
+    },
+    {
+      path:'/Pjlearnmore/:id',
+      element:<Projectlearnmorepage/>,
+      errorElement:<ErrorPage/>
+    },
+    {
+      path:'/en-us/board',
+      element:<Boardpage/>,
+      errorElement:<ErrorPage/>
+    },
+    {
+      path:'/Bmlearnmore/:id',
+      element:<Boardlearnmorepage/>,
+      errorElement:<ErrorPage/>
+    },
+    {
+      path:'/en-us/members',
+      element:<Memberspage/>,
+      errorElement:<ErrorPage/>
+    },
+    {
+      path:'/en-us/templates',
+      element:<Templatespage/>,
+      errorElement:<ErrorPage/>
     },
     {
       path: '/admin',

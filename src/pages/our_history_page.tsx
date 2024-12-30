@@ -1,8 +1,10 @@
 import Historycontainer from "../containers/our_history-container";
-const Histroypage=()=>{
-    return(
+const Histroypage = () => {
+    return (
         <>
-        <Historycontainer/>
+            <div className="px-10">
+                <Historycontainer />
+            </div>
         </>
     )
 }

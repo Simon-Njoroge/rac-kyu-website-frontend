@@ -1,32 +1,34 @@
 import axios from "axios";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import { Eye, BicepsFlexed, Activity } from 'lucide-react';
 import joinus from '../assets/join_us_today.avif';
-export const api = ' https://rac-kyu-backend.onrender.com';
+export const api = 'https://rackyu-django-server.onrender.com';
 import { FadeLoader } from "react-spinners";
+import { Tslider,Tourcourses } from "./alltypes";
 import area from '../assets/seven area of focus grey.png'
 const Home = () => {
-  const [homepics, setHomepics] = useState<string[]>([]);
-  const [courses, setOurcouses] = useState<string[]>([]);
+  const [homepics, setHomepics] = useState<Tslider[]>([]);
+  const [courses, setOurcouses] = useState<Tourcourses[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const [loading, setLoading] = useState(true); // Add loading state
+  const [loading, setLoading] = useState(true); 
 
   const FetchHomepics = async () => {
     try {
-      const res = await axios.get(`${api}/allhomepic`);
-      setHomepics(res.data);
-      setLoading(false); // Stop loading when data is fetched
+      const response = await axios.get(`${api}/api/all/sliders`);
+      setHomepics(response.data);
+      setLoading(false); 
+      console.log('hello')
     } catch (error) {
       console.log(error);
-      setLoading(false); // Stop loading even if there's an error
+      setLoading(false); 
     }
   };
 
   const fetchOurcouses = async () => {
     try {
-      const res = await axios.get(`${api}/allareas`);
+      const res = await axios.get(`${api}/api/all/ourcourses`);
       setOurcouses(res.data);
     } catch (error) {
       console.log(error);
@@ -88,17 +90,19 @@ const Home = () => {
             >
               {homepics.map((pics: any, index: number) => (
                 <div key={index} className="w-full flex-shrink-0">
-                  <div className="relative w-full h-screen">
-                    <img
-                      src={pics.picture}
-                      alt="sliding pictures"
-                      className="w-full h-full object-cover"
-                    />
-                    <p className="absolute bottom-0 w-full bg-black bg-opacity-50 text-white text-center p-4">
-                      {pics.description}
-                    </p>
+                <div className="relative w-full h-screen">
+                  <img
+                    src={pics.Image}
+                    alt="sliding pictures"
+                    className="w-full h-full object-cover"
+                  />
+                  {/* Centered Title and Description */}
+                  <div className="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-30 text-white text-center px-4">
+                    <h1 className="text-4xl font-bold mb-4">{pics.Title}</h1>
+                    <p className="text-lg">{pics.Description}</p>
                   </div>
                 </div>
+              </div>
               ))}
             </div>
             <button
@@ -118,22 +122,22 @@ const Home = () => {
       </div>
 
       {/* Who we are */}
-      <div className="mt-20">
+      <div className="mt-20 text-black">
         <h1 className="text-center font-bold text-2xl">Who We Are</h1>
         <p>
           Rotaract Club of Kirinyaga University was Chartered 10 years ago and continues to grow its membership. Our main goal being to execute Rotary International’s objectives in our world’s most persistent issues.
         </p>
         <p className="text-center mt-10">
-          <Link to="/our-history">
+          <a href="/our-history">
             <span className="text-center rounded-md text-blue-600 border-2 border-orange-500 p-1 text-xl hover:bg-pink-600 hover:text-white">
               Learn more
             </span>
-          </Link>
+          </a>
         </p>
       </div>
 
       {/* Our Mission, Vision, and Motto */}
-      <div className="mt-20 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-11 w-full text-center">
+      <div className="mt-20 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-11 w-full text-center text-white bg-gray-800 p-2 rounded">
         <div className="vision">
           <div className="border-2 border-pink-600 rounded-full p-2 inline-block">
             <Eye />
@@ -166,14 +170,14 @@ const Home = () => {
         <h1 className="text-center mt-10 font-bold text-2xl text-pink-600">Our Courses</h1>
         <img src={area} alt=""  className="mt-10 rounded"/>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 mt-10 gap-5 rounded-md">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 mt-10 gap-5 rounded-md text-white ">
         {courses.length > 0 ? (
           courses.map((course: any) => (
-            <div key={course.id} className="cursor-pointer text-center relative hover:bottom-2 hover:shadow-xl hover:shadow-black">
-              <img src={course.image} alt="" className="h-48 w-full rounded" />
-              <h1 className="text-center my-5 font-bold text-2xl">{course.area}</h1>
-              <p>{course.description}</p>
-              <button className="text-blue-500 mt-10 cursor-pointer">Learn more</button>
+            <div key={course.id} className="cursor-pointer text-center relative bg-gray-800 rounded-md hover:bottom-2 hover:shadow-xl hover:shadow-black">
+              <img src={course.Course_Image} alt="" className="h-48 w-full rounded" />
+              <h1 className="text-center my-5 font-bold text-2xl">{course.Course_Name}</h1>
+              {/* <p>{course.description}</p> */}
+              <a href={`/Clearnmore/${course.id}/?query=${course.Course_Name}`}><button className="text-pink-600 hover:underline mb-2  cursor-pointer">Learnmore</button></a>
             </div>
           ))
         ) : (
@@ -186,11 +190,11 @@ const Home = () => {
       </div>
 
       {/* Join Us Today */}
-      <div className="mt-10 relative">
-        <img src={joinus} alt="" className="w-full h-56" />
-        <Link to="/join-us"><button className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 border-2 rounded-md border-orange-600 bg-pink-600 text-white px-4 py-2 hover:bg-transparent hover:border-pink-600">
+      <div className="mt-10 relative rounded">
+        <img src={joinus} alt="" className="w-full h-56 rounded" />
+        <a href="/en-us/join-us"><button className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 border-2 rounded-md border-orange-600 bg-pink-600 text-white px-4 py-2 hover:bg-transparent hover:border-pink-600">
           Join Us Today
-        </button></Link>
+        </button></a>
       </div>
     </>
   );

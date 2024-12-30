@@ -1,8 +1,10 @@
 import Gallerycontainer from "../containers/gallery-container";
-const Gallerypage=()=>{
-    return(
+const Gallerypage = () => {
+    return (
         <>
-        <Gallerycontainer/>
+            <div className="px-10">
+                <Gallerycontainer />
+            </div>
         </>
     )
 }

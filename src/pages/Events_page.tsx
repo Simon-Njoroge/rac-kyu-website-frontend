@@ -1,8 +1,11 @@
 import Eventcontainer from "../containers/events-container";
-const Eventpage=()=>{
-    return(
+const Eventpage = () => {
+    return (
         <>
-        <Eventcontainer/>
+            <div className="px-10">
+                <Eventcontainer />
+            </div>
+
         </>
     )
 }

@@ -1,8 +1,10 @@
-import Joinuscontainer from "../containers/blogs-container"
+import Joinuscontainer from "../containers/joinuscontainer"
 const Blogpage=()=>{
     return(
         <>
+        <div className="px-10">
         <Joinuscontainer/>
+        </div>
         </>
     )
 }
