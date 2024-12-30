@@ -49,7 +49,7 @@ const Gallery = () => {
                 <div className="p-4">
                   <h2 className="text-lg font-semibold text-white">{gall.gallery_title}</h2>
                   <p className="text-sm text-white mt-1">
-                    {new Date(gall.created_on).toLocaleDateString()}
+                    Uploaded on:{new Date(gall.created_on).toLocaleDateString()}
                   </p>
                   {/* <p className="text-white mt-2">{gall.description}</p> */}
                   <a
