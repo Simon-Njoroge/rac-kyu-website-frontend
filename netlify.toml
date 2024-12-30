@@ -49,9 +49,26 @@
   status = 200
 
 [[redirects]]
+  from = "/en-us/our-courses"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
   from = "/en-us/templates"
   to = "/index.html"
   status = 200
+
+[[redirects]]
+  from = "/en-us/download"
+  to = "/index.html"
+  status = 200
+
+
+[[redirects]]
+  from = "/en-us/join-us"
+  to = "/index.html"
+  status = 200
+
 
 [[redirects]]
   from = "/managehome"
