@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { api } from './home';
 import { FadeLoader } from "react-spinners";
 import { TPresidents } from "./alltypes";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 const Presidents = () => {
   const [president, setPresident] = useState<TPresidents[] | any[]>([]);
 
@@ -33,7 +33,7 @@ const Presidents = () => {
                 <div className="p-4 bg-gray-800  rounded-b-md">
                   <p className="text-md font-bold text-white">President: {pres.President_Name}</p>
                   <p className="text-blue-500">{new Date(pres.Year_Completed).toDateString()}</p>
-                  <a href={`/Plearnmore/${pres.id}/?query=${pres.President_Name}`}><p className="text-blue-700 mt-2">Learn more</p></a>
+                  <Link to={`/Plearnmore/${pres.id}/?query=${pres.President_Name}`}><p className="text-blue-700 mt-2">Learn more</p></Link>
                 </div>
               </div>
             ))) : (

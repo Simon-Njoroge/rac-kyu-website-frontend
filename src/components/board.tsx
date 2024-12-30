@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { api } from "./home";
 import { Tboard } from "./alltypes";
-
+import { Link } from "react-router-dom";
 function Board() {
   const [board, setBoard] = useState<Tboard[]>([]);
 
@@ -48,12 +48,12 @@ function Board() {
                     {boardmember.Docket.toLocaleUpperCase()}
                   </p>
                   <p className="text-white">{boardmember.Rotary_id}</p>
-                  <a
-                    href={`/Bmlearnmore/${boardmember.id}/?query=${boardmember.Name}`}
+                  <Link
+                    to={`/Bmlearnmore/${boardmember.id}/?query=${boardmember.Name}`}
                     className="inline-block mt-4 text-pink-600 hover:underline"
                   >
                     Learn More
-                  </a>
+                  </Link>
                 </div>
               </div>
             ))

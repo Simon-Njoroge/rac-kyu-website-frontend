@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { FadeLoader } from "react-spinners";
 import areas from '../assets/seven area of focus grey.png';
 import { Tourcourses } from "./alltypes";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Courses = () => {
     const [courses, setCourses] = useState<Tourcourses[]>([]);
@@ -37,9 +37,9 @@ const Courses = () => {
                                     <img src={course.Course_Image} alt={course.Course_Name} className="h-48 w-full object-cover" />
                                     <div className="p-4">
                                         <h1 className="text-lg md:text-xl font-semibold text-white mb-3">{course.Course_Name}</h1>
-                                        <a href={`/Clearnmore/${course.id}/?query=${course.Course_Name}`}>
+                                        <Link to={`/Clearnmore/${course.id}/?query=${course.Course_Name}`}>
                                             <button className="text-blue-500 hover:underline text-sm md:text-base mt-4">Learn more</button>
-                                        </a>
+                                        </Link>
                                     </div>
                                 </div>
                             ))

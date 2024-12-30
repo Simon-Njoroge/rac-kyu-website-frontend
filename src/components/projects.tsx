@@ -4,7 +4,8 @@ import { api } from './home';
 import { FadeLoader } from "react-spinners";
 import project from '../assets/projects.jpg';
 import { Tproject } from "./alltypes";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
+
 const Projects = () => {
     const [projects, setProject] = useState<Tproject[]>([]);
 
@@ -35,7 +36,7 @@ const Projects = () => {
                                 <div className="p-4">
                                     <p className="text-center text-lg font-semibold mb-2 text-white">{project.Project_Name}</p>
                                     <p className="text-center text-sm text-gray-600">{new Date(project.End_Date).toLocaleDateString()}</p>
-                                    <a href={`/Pjlearnmore/${project.id}/?query=${project.Project_Name}`}> <p className="text-center text-sm text-blue-500" >learnmore</p></a>
+                                    <Link to={`/Pjlearnmore/${project.id}/?query=${project.Project_Name}`}> <p className="text-center text-sm text-blue-500" >learnmore</p></Link>
                                 </div>
                             </div>
                         ))

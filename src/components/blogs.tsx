@@ -4,7 +4,7 @@ import { api } from './home';
 import { FadeLoader } from 'react-spinners';
 import { Tblogs } from './alltypes';
 import { FaThumbsUp } from 'react-icons/fa';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 const Blogs = () => {
   const [blogs, setBlogs] = useState<Tblogs[]>([]);
   const [likes, setLikes] = useState<Record<number, number>>({});
@@ -71,8 +71,8 @@ const Blogs = () => {
                 </div>
 
                 {/* Learn More */}
-                <a href={`/Blearnmore/${blog.id}/?query=${blog.Blog_Title}`}><p className="mt-4  text-blue-600 text-center">view blog</p>
-                </a>
+                <Link to={`/Blearnmore/${blog.id}/?query=${blog.Blog_Title}`}><p className="mt-4  text-blue-600 text-center">view blog</p>
+                </Link>
                 {/* Like Button */}
                 <div className="mt-4 flex items-center justify-between">
                   <button
