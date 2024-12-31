@@ -32,7 +32,7 @@ const Presidents = () => {
                 <img src={pres.President_Image} alt="" className="w-full h-48 object-cover rounded-t-md" />
                 <div className="p-4 bg-gray-800  rounded-b-md">
                   <p className="text-md font-bold text-white">President: {pres.President_Name}</p>
-                  <p className="text-blue-500">{new Date(pres.Year_Completed).toDateString()}</p>
+                  <p className="text-blue-500">{new Date(pres.Year_Started).getFullYear()}-{new Date(pres.Year_Completed).getFullYear()}</p>
                   <Link to={`/Plearnmore/${pres.id}/?query=${pres.President_Name}`}><p className="text-blue-700 mt-2">Learn more</p></Link>
                 </div>
               </div>
