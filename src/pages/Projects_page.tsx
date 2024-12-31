@@ -2,7 +2,7 @@ import Projectcontainer from "../containers/projects-container";
 const Projectpage=()=>{
     return(
         <>
-        <div className="px-10 ">
+        <div className="md:px-10 px-2 lg:md:px-10 ">
         <Projectcontainer/>
         </div>
         </>

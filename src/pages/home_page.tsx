@@ -15,7 +15,7 @@ const Homepage = () => {
   }, []);
 
   return (
-    <div className="relative mx-10 ">
+    <div className="relative md:px-10 px-2 lg:md:px-10 ">
       {loading ? (
         <div className="flex justify-center items-center w-full h-screen">
           <FadeLoader color="#EC4899" />

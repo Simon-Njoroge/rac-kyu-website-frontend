@@ -2,7 +2,7 @@ import Coursescontainer from "../containers/our_courses-containr";
 const Coursepage=()=>{
     return(
         <>
-        <div className="px-10">
+        <div className="md:px-10 px-2 lg:md:px-10">
         <Coursescontainer/>
         </div>
         </>

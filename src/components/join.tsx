@@ -1,24 +1,27 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 import join from "../assets/join.avif";
 
 const Join = () => {
   const form = useRef<HTMLFormElement>(null);
-
+  const [sending,setsending]=useState<Boolean>(false)
   const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
+    setsending(true)
     if (form.current) {
       emailjs
         .sendForm('service_v112guj', 'template_xfn9wjv', form.current, {
           publicKey: 'MOCMiLUVmJ5MjaouZ',
+          
         })
         .then(
           () => {
+            setsending(false)
             console.log("SUCCESS!");
             alert("Your message has been sent successfully!");
           },
           (error) => {
+            setsending(false)
             console.error("FAILED...", error.text);
             alert("Failed to send the message. Please try again later.");
           }
@@ -89,7 +92,9 @@ const Join = () => {
             type="submit"
             className="w-full bg-pink-600 text-white py-3 px-4 rounded-md font-semibold hover:bg-pink-700 transition duration-200"
           >
-            Send
+            {
+              sending ? 'sending':'send'
+            }
           </button>
         </form>
 

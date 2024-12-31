@@ -2,7 +2,7 @@ import Joinuscontainer from "../containers/joinuscontainer"
 const Blogpage=()=>{
     return(
         <>
-        <div className="px-10">
+        <div className="md:px-10 px-2 lg:md:px-10">
         <Joinuscontainer/>
         </div>
         </>

@@ -1,14 +1,14 @@
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFacebook, faTwitter, faInstagram, faLinkedin } from '@fortawesome/free-brands-svg-icons';
-
+import { faFacebook, faTwitter, faInstagram,faTiktok } from '@fortawesome/free-brands-svg-icons';
+const date:any= new Date().getFullYear()
 const Footer = () => {
   return (
     <footer className="bg-gray-800 text-gray-400 py-12 rounded-t-md">
       <div className="container mx-auto px-6 lg:px-16 grid grid-cols-1 md:grid-cols-4 gap-8">
         {/* Club Information */}
         <div>
-          <h3 className="text-white text-xl font-bold mb-4">Rotaract Club of Kirinyaga</h3>
+          <h3 className="text-white text-xl font-bold mb-4">Rotaract Club of Kirinyaga University</h3>
           <p className="text-sm leading-relaxed">
             Building a better community through service, leadership, and fellowship. Join us and be part of the change.
           </p>
@@ -47,7 +47,7 @@ const Footer = () => {
               <FontAwesomeIcon icon={faInstagram} size="lg" />
             </a>
             <a href="https://linkedin.com" aria-label="LinkedIn" className="text-gray-400 hover:text-blue-600 transition">
-              <FontAwesomeIcon icon={faLinkedin} size="lg" />
+              <FontAwesomeIcon icon={faTiktok} size="lg" />
             </a>
           </div>
         </div>
@@ -74,7 +74,7 @@ const Footer = () => {
 
       {/* Footer Bottom */}
       <div className="border-t border-gray-700 mt-10 pt-6 text-center">
-        <p className="text-sm">&copy; 2024 Rotaract Club of Kirinyaga. All Rights Reserved.</p>
+        <p className="text-sm">&copy; {date} Rotaract Club of Kirinyaga University. All Rights Reserved.</p>
       </div>
     </footer>
   );

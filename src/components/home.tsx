@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import { Eye, BicepsFlexed, Activity } from 'lucide-react';
 import joinus from '../assets/join_us_today.avif';
-export const api = 'https://rackyu-django-server.onrender.com';
+export const api = ' http://127.0.0.1:8000';
 import { FadeLoader } from "react-spinners";
 import { Tslider,Tourcourses } from "./alltypes";
 import area from '../assets/seven area of focus grey.png'
@@ -98,7 +98,7 @@ const Home = () => {
                   />
                   {/* Centered Title and Description */}
                   <div className="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-30 text-white text-center px-4">
-                    <h1 className="text-4xl font-bold mb-4">{pics.Title}</h1>
+                    <h1 className="text-4xl font-bold mb-4 text-pink-600">{pics.Title}</h1>
                     <p className="text-lg">{pics.Description}</p>
                   </div>
                 </div>

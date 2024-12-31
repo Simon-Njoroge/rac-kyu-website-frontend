@@ -1,6 +1,6 @@
 import { TypeAnimation } from "react-type-animation";
 import mpesa from '../assets/mpesa.png';
-
+import { api } from "./home";
 const Donate = () => {
   const account = {
     paybillnumber: "765244",
@@ -9,7 +9,7 @@ const Donate = () => {
 
   return (
     <>
-      <div className="mt-10 mx-0 md:mx-0 bg-gray-100">
+      <div className="mt-10 mx-0 md:mx-0 ">
         <p className="bg-pink-600 text-center h-20 flex items-center justify-center text-white font-bold text-xl">
           Donate
         </p>
@@ -41,6 +41,9 @@ const Donate = () => {
             <p className="text-lg md:text-xl font-semibold">Paybill Number: {account.paybillnumber}</p>
             <p className="text-lg md:text-xl font-semibold">Account Number: {account.accountnumber}</p>
           </div>
+        </div>
+        <div>
+          <a href={`${api}/donate/safaricom/stkpush/makedonation/`}><button className="text-black items-center flex  bg-pink-600 rounded p-2 border border-white mb-2">Donate Via Mpesa</button></a>
         </div>
       </div>
     </>
