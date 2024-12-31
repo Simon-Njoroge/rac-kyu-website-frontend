@@ -63,6 +63,11 @@
   to = "/index.html"
   status = 200
 
+[[redirects]]
+  from = "/en-us/stkpush/promptsent"
+  to = "/index.html"
+  status = 200
+
 
 [[redirects]]
   from = "/en-us/join-us"

@@ -31,6 +31,7 @@ import Boardpage from './pages/boardpage';
 import Boardlearnmorepage from './pages/boardlearnmorepage';
 import Memberspage from './pages/memberspage';
 import Templatespage from './pages/templatespage';
+import STKPushNotification from './components/prompt';
 // import UnderMaintenance from './components/maintenace';
 function App() {
   const router = createBrowserRouter([
@@ -132,6 +133,11 @@ function App() {
     {
       path:'/en-us/templates',
       element:<Templatespage/>,
+      errorElement:<ErrorPage/>
+    },
+    {
+      path:'/en-us/stkpush/promptsent',
+      element:<STKPushNotification/>,
       errorElement:<ErrorPage/>
     },
     {

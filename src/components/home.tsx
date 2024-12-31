@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import { Eye, BicepsFlexed, Activity } from 'lucide-react';
 import joinus from '../assets/join_us_today.avif';
-export const api = ' http://127.0.0.1:8000';
+export const api = 'https://rackyu-django-server.onrender.com';
 import { FadeLoader } from "react-spinners";
 import { Tslider,Tourcourses } from "./alltypes";
 import area from '../assets/seven area of focus grey.png'
