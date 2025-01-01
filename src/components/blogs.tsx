@@ -61,7 +61,7 @@ const Blogs = () => {
 
                 {/* Blog Content */}
                 <div className="space-y-2">
-                  <p className="text-sm text-white">{new Date(blog.Created_on).toLocaleDateString()}</p>
+                  <p className="text-sm text-white">Date published: {new Date(blog.Created_on).toLocaleDateString()}</p>
                   <p className="text-sm text-white font-medium">
                     Author: {blog.author_name}
                   </p>
