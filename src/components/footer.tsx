@@ -40,13 +40,13 @@ const Footer = () => {
             <a href="https://facebook.com" aria-label="Facebook" className="text-gray-400 hover:text-blue-500 transition">
               <FontAwesomeIcon icon={faFacebook} size="lg" />
             </a>
-            <a href="https://twitter.com" aria-label="Twitter" className="text-gray-400 hover:text-blue-400 transition">
+            <a href="https://x.com/kyu_rotaract" aria-label="Twitter" className="text-gray-400 hover:text-blue-400 transition">
               <FontAwesomeIcon icon={faTwitter} size="lg" />
             </a>
-            <a href="https://instagram.com" aria-label="Instagram" className="text-gray-400 hover:text-pink-500 transition">
+            <a href="https://www.instagram.com/rac_kyu" aria-label="Instagram" className="text-gray-400 hover:text-pink-500 transition">
               <FontAwesomeIcon icon={faInstagram} size="lg" />
             </a>
-            <a href="https://linkedin.com" aria-label="LinkedIn" className="text-gray-400 hover:text-blue-600 transition">
+            <a href="https://www.tiktok.com/@rac_kyu" aria-label="Tiktok" className="text-gray-400 hover:text-blue-600 transition">
               <FontAwesomeIcon icon={faTiktok} size="lg" />
             </a>
           </div>
