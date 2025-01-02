@@ -54,6 +54,11 @@
   status = 200
 
 [[redirects]]
+  from = "/Blearnmore/:id"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
   from = "/en-us/templates"
   to = "/index.html"
   status = 200
