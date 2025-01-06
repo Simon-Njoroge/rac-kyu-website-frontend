@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Homecontainer from "../containers/home-cointainer";
-import Logo from '../assets/rac kyu logo.jpg';
+import Logo from '../assets/rac_kyu_logo-removebg-preview.png';
 
 const Homepage = () => {
   const [loading, setLoading] = useState(true);
