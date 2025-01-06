@@ -1,12 +1,11 @@
 import { useState, useEffect } from "react";
-import Homecontainer from "../containers/home-cointainer"
-import { FadeLoader } from "react-spinners";
+import Homecontainer from "../containers/home-cointainer";
+import Logo from '../assets/rac kyu logo.jpg';
 
 const Homepage = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    
     const timer = setTimeout(() => {
       setLoading(false); 
     }, 1000); 
@@ -15,10 +14,10 @@ const Homepage = () => {
   }, []);
 
   return (
-    <div className="relative md:px-10 px-2 lg:md:px-10 ">
+    <div className="relative md:px-10 px-2 lg:md:px-10">
       {loading ? (
         <div className="flex justify-center items-center w-full h-screen">
-          <FadeLoader color="#EC4899" />
+          <img src={Logo} alt="RAC KYU Logo" className="w-40 h-40 object-contain" />
         </div>
       ) : (
         <Homecontainer />
