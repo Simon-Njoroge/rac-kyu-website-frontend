@@ -42,7 +42,7 @@ const Members = () => {
                         </thead>
 
                         {/* Table Body */}
-                        <tbody className="text-gray-600 text-sm font-light">
+                        <tbody className="text-black text-sm font-bold">
                             {members.length > 0 ? (
                                 members.map((member) => (
                                     <tr
